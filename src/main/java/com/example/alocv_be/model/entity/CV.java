@@ -19,5 +19,4 @@ public class CV {
     private String description;
     private String image;
     private boolean status;
-
 }

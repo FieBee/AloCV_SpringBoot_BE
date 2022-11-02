@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping()
+@RequestMapping
 public class AccountController {
     @Autowired
     IAccountService accountService;
@@ -59,10 +59,10 @@ public class AccountController {
         return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
     }
 
-//    @GetMapping("/list")
-//    public ModelAndView getAllAccount() {
-//        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
-//        modelAndView.addObject("accounts", accountService.findAll());
-//        return modelAndView;
-//    }
+    @GetMapping("/list")
+    public ModelAndView getAllAccount() {
+        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
+        modelAndView.addObject("accounts", accountService.findAll());
+        return modelAndView;
+    }
 }
