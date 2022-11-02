@@ -1,4 +1,4 @@
-package com.example.alocv_be.model.controller;
+package com.example.alocv_be.controller;
 
 
 import com.example.alocv_be.model.entity.Account;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping()
+@RequestMapping("/account")
 public class AccountController {
     @Autowired
     IAccountService accountService;
@@ -59,10 +59,10 @@ public class AccountController {
         return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
     }
 
-//    @GetMapping("/list")
-//    public ModelAndView getAllAccount() {
-//        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
-//        modelAndView.addObject("accounts", accountService.findAll());
-//        return modelAndView;
-//    }
+    @GetMapping("/list")
+    public ModelAndView getAllAccount() {
+        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
+        modelAndView.addObject("accounts", accountService.findAll());
+        return modelAndView;
+    }
 }
