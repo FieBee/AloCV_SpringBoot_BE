@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface AccountRepo extends PagingAndSortingRepository<Account, Long> {
     Account findAccountById(Long id);
 
-    Account findByAccount(String account);
+//    Account findByAccount(String account);
 
     Account findAccountByUserName(String account);
 }
