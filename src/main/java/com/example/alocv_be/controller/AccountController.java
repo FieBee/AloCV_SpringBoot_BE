@@ -1,4 +1,4 @@
-package com.example.alocv_be.model.controller;
+package com.example.alocv_be.controller;
 
 
 import com.example.alocv_be.model.entity.Account;
