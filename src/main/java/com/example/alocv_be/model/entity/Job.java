@@ -17,13 +17,17 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Transient
     @ManyToOne
     private JobField jobField;
 
     private Long salaryRange;
 
+    @Transient
     @ManyToOne
     private Location location;
+
+
     private String position;
     private String experience;
     private String jobType;
