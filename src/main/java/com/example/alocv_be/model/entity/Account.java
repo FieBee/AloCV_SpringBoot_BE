@@ -22,8 +22,9 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne
-    private Account account;
+
+    private String userName;
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AppRole> appRole;
