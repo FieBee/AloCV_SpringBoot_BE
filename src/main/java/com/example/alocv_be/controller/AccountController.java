@@ -1,27 +1,27 @@
-package com.example.alocv_be.model.controller;
+package com.example.alocv_be.controller;
 
 
 import com.example.alocv_be.model.entity.Account;
 import com.example.alocv_be.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping()
+@RequestMapping("/account")
 public class AccountController {
     @Autowired
     IAccountService accountService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Account>> findAllAccount(){
-        List<Account> accounts = (List<Account>)accountService.findAll();
+    public ResponseEntity<Iterable<Account>> findAllAccount(Pageable pageable){
+        List<Account> accounts = (List<Account>)accountService.findAll(pageable);
         if (accounts.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -59,10 +59,5 @@ public class AccountController {
         return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
     }
 
-//    @GetMapping("/list")
-//    public ModelAndView getAllAccount() {
-//        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
-//        modelAndView.addObject("accounts", accountService.findAll());
-//        return modelAndView;
-//    }
+
 }

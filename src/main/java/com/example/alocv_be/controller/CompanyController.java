@@ -1,9 +1,10 @@
-package com.example.alocv_be.model.controller;
+package com.example.alocv_be.controller;
 
 import com.example.alocv_be.model.entity.Account;
 import com.example.alocv_be.model.entity.Company;
 import com.example.alocv_be.service.company.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class CompanyController {
     ICompanyService companyService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Company>> findAllCompany(){
-        List<Company> companies  = (List<Company>)companyService.findAll();
+    public ResponseEntity<Iterable<Company>> findAllCompany(Pageable pageable){
+        List<Company> companies  = (List<Company>)companyService.findAll(pageable);
         if (companies.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
