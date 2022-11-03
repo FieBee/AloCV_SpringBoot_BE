@@ -3,6 +3,7 @@ package com.example.alocv_be.controller;
 import com.example.alocv_be.model.entity.CV;
 import com.example.alocv_be.service.cv.ICVService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class CVController {
     @Autowired
     private ICVService cvService;
     @GetMapping
-    public ResponseEntity<Iterable<CV>> findAllCV(){
-        List<CV> cvs = (List<CV>) cvService.findAll();
+    public ResponseEntity<Iterable<CV>> findAllCV(Pageable pageable){
+        List<CV> cvs = (List<CV>) cvService.findAll(pageable);
         if (cvs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
