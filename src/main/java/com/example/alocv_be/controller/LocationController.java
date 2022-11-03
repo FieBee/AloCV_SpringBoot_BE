@@ -5,6 +5,7 @@ import com.example.alocv_be.model.entity.Notification;
 import com.example.alocv_be.service.location.ILocationService;
 import com.example.alocv_be.service.notification.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class LocationController {
     @Autowired
     private ILocationService locationService;
     @GetMapping
-    public ResponseEntity<Iterable<Location>> findAllLocation(){
-        List<Location> locations = (List<Location>) locationService.findAll();
+    public ResponseEntity<Iterable<Location>> findAllLocation(Pageable pageable){
+        List<Location> locations = (List<Location>) locationService.findAll(pageable);
         if (locations.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

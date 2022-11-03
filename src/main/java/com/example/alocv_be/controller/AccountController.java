@@ -59,14 +59,5 @@ public class AccountController {
         return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
     }
 
-<<<<<<< HEAD
 
-=======
-    @GetMapping("/list")
-    public ModelAndView getAllAccount() {
-        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
-        modelAndView.addObject("accounts", accountService.findAll());
-        return modelAndView;
-    }
->>>>>>> a0997e8ed76c2c3ab8287d6b37ec15aad027ee39
 }

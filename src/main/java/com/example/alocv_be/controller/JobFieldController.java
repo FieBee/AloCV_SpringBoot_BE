@@ -5,6 +5,7 @@ import com.example.alocv_be.model.entity.Notification;
 import com.example.alocv_be.service.jobField.IJobFieldService;
 import com.example.alocv_be.service.notification.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class JobFieldController {
     @Autowired
     private IJobFieldService jobFieldService;
     @GetMapping
-    public ResponseEntity<Iterable<JobField>> findAllJobField(){
-        List<JobField> jobFields = (List<JobField>) jobFieldService.findAll();
+    public ResponseEntity<Iterable<JobField>> findAllJobField(Pageable pageable){
+        List<JobField> jobFields = (List<JobField>) jobFieldService.findAll(pageable);
         if (jobFields.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
