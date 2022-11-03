@@ -3,6 +3,7 @@ package com.example.alocv_be.service.location;
 import com.example.alocv_be.model.entity.Location;
 import com.example.alocv_be.repo.LocationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class LocationService implements ILocationService{
     private LocationRepo locationRepo;
 
     @Override
-    public Iterable<Location> findAll() {
+    public Iterable<Location> findAll(Pageable pageable) {
         return locationRepo.findAll();
     }
 

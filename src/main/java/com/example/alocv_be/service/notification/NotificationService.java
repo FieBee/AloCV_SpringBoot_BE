@@ -3,6 +3,7 @@ package com.example.alocv_be.service.notification;
 import com.example.alocv_be.model.entity.Notification;
 import com.example.alocv_be.repo.NotificationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class NotificationService implements INotificationService{
     private NotificationRepo notificationRepo;
 
     @Override
-    public Iterable<Notification> findAll() {
+    public Iterable<Notification> findAll(Pageable pageable) {
         return notificationRepo.findAll();
     }
 

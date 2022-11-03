@@ -3,6 +3,7 @@ package com.example.alocv_be.service.jobField;
 import com.example.alocv_be.model.entity.JobField;
 import com.example.alocv_be.repo.JobFieldRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class JobFieldService implements IJobFieldService{
     private JobFieldRepo jobFieldRepo;
 
     @Override
-    public Iterable<JobField> findAll() {
+    public Iterable<JobField> findAll(Pageable pageable) {
         return jobFieldRepo.findAll();
     }
 
