@@ -18,8 +18,8 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String email;
-    private String password;
+    @OneToOne
+    private Account account;
     private String image;
     private String address;
     private Long staffNumber;

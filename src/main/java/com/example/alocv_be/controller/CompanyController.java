@@ -1,6 +1,7 @@
 package com.example.alocv_be.controller;
 
 import com.example.alocv_be.model.entity.Company;
+import com.example.alocv_be.model.entity.User;
 import com.example.alocv_be.service.company.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -58,10 +59,13 @@ public class CompanyController {
         return new ResponseEntity<>(companyOptional.get(),HttpStatus.OK);
     }
 
-//    @GetMapping("/list")
-//    public ModelAndView getAllAccount() {
-//        ModelAndView modelAndView = new ModelAndView("/ajaxTeacher");
-//        modelAndView.addObject("accounts", accountService.findAll());
-//        return modelAndView;
-//    }
+    @GetMapping("/getCompany/{userName}")
+    public ResponseEntity<User> findByAccount(@PathVariable String userName) {
+        Optional<User> company = companyService.findCompanyByAccount_UserName(userName);
+        if (!company.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(company.get(), HttpStatus.OK);
+    }
+
 }
