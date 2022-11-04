@@ -28,17 +28,17 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
 //    @Query("SELECT e FROM Job e WHERE e.name = :name AND e.salaryRange = :salaryRange AND e.company.name = :company AND e.jobField.name = :jobField AND e.location.name = :location")
 //    List<Job>findJobBy(@Param("name") String name, @Param("salaryRange") Long salaryRange, @Param("company") String company, @Param("jobField") String jobField, @Param("location") String location);
 
-    @Query(value ="select * from job where\n" +
-            "(SELECT e.* FROM job as e\n" +
-            "INNER joiN job_field on e.job_field_id =job_field.id\n" +
-            "INNER join location on e.location_id = location.id\n" +
-            "WHERE e.name = 'kysu' AND e.salary_range = 12 AND job_field.name = 'IT'  AND location.name = 'HaNoi')\n" +
-            "in (SELECT job.* FROM job\n" +
-            "    join company_job_list jl\n" +
-            "    join company c on jl.company_id = c.id\n" +
-            "    where job.id = jl.job_list_id and c.name = 'CodeGym');", nativeQuery = true)
-
-    List<Job> h();
+//    @Query(value ="select * from job where\n" +
+//            "(SELECT e.* FROM job as e\n" +
+//            "INNER joiN job_field on e.job_field_id =job_field.id\n" +
+//            "INNER join location on e.location_id = location.id\n" +
+//            "WHERE e.name = 'kysu' AND e.salary_range = 12 AND job_field.name = 'IT'  AND location.name = 'HaNoi')\n" +
+//            "in (SELECT job.* FROM job\n" +
+//            "    join company_job_list jl\n" +
+//            "    join company c on jl.company_id = c.id\n" +
+//            "    where job.id = jl.job_list_id and c.name = 'CodeGym');", nativeQuery = true)
+//
+//    List<Job> h();
 }
 
 
