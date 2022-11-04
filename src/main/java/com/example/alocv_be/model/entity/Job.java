@@ -18,13 +18,13 @@ public class Job {
     private Long id;
     private String name;
 
-    @Transient
+//    @Transient
     @ManyToOne
     private JobField jobField;
 
     private Long salaryRange;
 
-    @Transient
+//    @Transient
     @ManyToOne
     private Location location;
 
