@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +33,13 @@ public class JobService implements IJobService {
     @Override
     public void remove(Long id) {
     jobRepo.deleteById(id);
+    }
+
+
+    @Override
+    public List<Job> findJobByNameAndSalaryRangeAndJobFieldAndLocation(String name, Long salaryRange, String jobField, String location, String companyName) {
+        List<Job> jobList= jobRepo.findJobByNameAndSalaryRangeAndJobFieldAndLocation(name,salaryRange, jobField,location, companyName);
+
+        return jobList;
     }
 }

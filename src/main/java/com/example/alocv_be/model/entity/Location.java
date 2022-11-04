@@ -22,6 +22,11 @@ public class Location {
 
     private boolean status;
 
-    @OneToMany
-    private List<Job> jobList;
+//    @OneToMany
+//    private List<Job> jobList;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
