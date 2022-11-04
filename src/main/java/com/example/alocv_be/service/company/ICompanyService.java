@@ -7,5 +7,5 @@ import com.example.alocv_be.service.IGerenalService;
 import java.util.Optional;
 
 public interface ICompanyService extends IGerenalService<Company> {
-    Optional<User> findCompanyByAccount_UserName(String userName);
+    Optional<Company> findCompanyByAccount_UserName(String userName);
 }

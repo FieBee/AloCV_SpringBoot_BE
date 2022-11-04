@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface CompanyRepo extends PagingAndSortingRepository<Company, Long> {
-    Optional<User> findCompanyByAccount_UserName(String userName);
+    Optional<Company> findCompanyByAccount_UserName(String userName);
 }

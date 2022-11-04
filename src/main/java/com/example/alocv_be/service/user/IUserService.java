@@ -6,5 +6,7 @@ import com.example.alocv_be.service.IGerenalService;
 import java.util.Optional;
 
 public interface IUserService extends IGerenalService<User> {
-    Optional<User> findStudentByAccount_UserName(String userName);
+
+
+    Optional<User> findUserByAccount_UserName(String userName);
 }

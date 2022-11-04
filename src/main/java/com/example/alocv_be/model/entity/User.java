@@ -28,4 +28,5 @@ public class User {
     private List<Notification> notificationList;
 
     private boolean status;
+
 }
