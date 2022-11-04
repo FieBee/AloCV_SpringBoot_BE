@@ -18,8 +18,8 @@ public class JobField {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Job> jobList;
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<Job> jobList;
 
     private boolean status;
 

@@ -64,7 +64,7 @@ public class JobAllController {
     }
     @GetMapping("/getJob/{name}/{salaryRange}/{jobField}/{location}/{companyName}")
     public ResponseEntity<List<Job>> findBy(@PathVariable String name, @PathVariable  Long salaryRange, @PathVariable  String jobField, @PathVariable String location, @PathVariable String companyName) {
-        List<Job> jobList = jobService.findJobByNameAndSalaryRangeAndJobFieldAndLocation(name, salaryRange,jobField,location, companyName);
+        List<Job> jobList = jobService.findJobBy(name, salaryRange,jobField,location, companyName);
         if (jobList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

@@ -20,13 +20,11 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
             "    join company_job_list jl\n" +
             "    join company c on jl.company_id = c.id\n" +
             "    where job.id = jl.job_list_id and c.name = :c_name);", nativeQuery = true)
-    List<Job> findJobByNameAndSalaryRangeAndJobFieldAndLocation(@Param("name") String name,
-                                                                    @Param("salary_range") Long salaryRange,
-                                                                    @Param("job_field_name") String jobField,
-                                                                    @Param("location_name") String location,
-                                                                    @Param("c_name") String companyName);
-//    @Query("SELECT e FROM Job e WHERE e.name = :name AND e.salaryRange = :salaryRange AND e.company.name = :company AND e.jobField.name = :jobField AND e.location.name = :location")
-//    List<Job>findJobBy(@Param("name") String name, @Param("salaryRange") Long salaryRange, @Param("company") String company, @Param("jobField") String jobField, @Param("location") String location);
+    List<Job> findJobBy(@Param("name") String name,
+                        @Param("salary_range") Long salaryRange,
+                        @Param("job_field_name") String jobField,
+                        @Param("location_name") String location,
+                        @Param("c_name") String companyName);
 
 //    @Query(value ="select * from job where\n" +
 //            "(SELECT e.* FROM job as e\n" +
