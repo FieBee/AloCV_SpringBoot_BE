@@ -18,11 +18,16 @@ public class JobField {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Job> jobList;
 
     private boolean status;
 
     public JobField() {
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
