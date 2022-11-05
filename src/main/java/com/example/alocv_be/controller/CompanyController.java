@@ -60,8 +60,8 @@ public class CompanyController {
     }
 
     @GetMapping("/getCompany/{userName}")
-    public ResponseEntity<User> findByAccount(@PathVariable String userName) {
-        Optional<User> company = companyService.findCompanyByAccount_UserName(userName);
+    public ResponseEntity<Company> findByAccount(@PathVariable String userName) {
+        Optional<Company> company = companyService.findCompanyByAccount_UserName(userName);
         if (!company.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

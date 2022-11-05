@@ -87,7 +87,7 @@ public class UserController {
 
     @GetMapping("/getUser/{userName}")
     public ResponseEntity<User> findByAccount(@PathVariable String userName) {
-        Optional<User> user = userService.findStudentByAccount_UserName(userName);
+        Optional<User> user = userService.findUserByAccount_UserName(userName);
         if (!user.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

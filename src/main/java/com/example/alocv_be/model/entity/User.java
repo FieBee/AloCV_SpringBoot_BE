@@ -29,5 +29,7 @@ public class User {
 
     private boolean status;
 
+
     private String image;
+
 }

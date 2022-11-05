@@ -35,7 +35,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Optional<User> findStudentByAccount_UserName(String userName) {
+    public Optional<User> findUserByAccount_UserName(String userName) {
         return userRepo.findStudentByAccount_UserName(userName);
     }
 }

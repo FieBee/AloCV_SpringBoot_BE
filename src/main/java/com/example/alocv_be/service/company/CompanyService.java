@@ -34,7 +34,7 @@ public class CompanyService implements ICompanyService{
     }
 
     @Override
-    public Optional<User> findCompanyByAccount_UserName(String userName) {
+    public Optional<Company> findCompanyByAccount_UserName(String userName) {
         return companyRepo.findCompanyByAccount_UserName(userName);
     }
 }
