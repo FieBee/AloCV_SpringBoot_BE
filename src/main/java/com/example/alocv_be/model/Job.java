@@ -18,13 +18,13 @@ public class Job extends DateAt {
     private Long id;
     private String name;
 
-//    @Transient
+
     @ManyToOne
     private JobField jobField;
 
     private Long salaryRange;
 
-//    @Transient
+
     @ManyToOne
     private Location location;
 

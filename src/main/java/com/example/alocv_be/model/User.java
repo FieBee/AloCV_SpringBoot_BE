@@ -27,10 +27,7 @@ public class User extends DateAt{
     private boolean isAdmin;
 
 
-//    @OneToMany
-//    private List<CV> cvList;
-//    @OneToMany
-//    private List<Notification> notificationList;
+
 
 
 

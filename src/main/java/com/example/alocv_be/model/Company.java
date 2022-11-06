@@ -28,11 +28,7 @@ public class Company extends DateAt{
     private String linkFb;
     private boolean status;
 
-//    @OneToMany
-//    private List<Job> jobList;
 
-//    @OneToMany
-//    private List<Notification> notificationList;
 
 
 

@@ -22,8 +22,7 @@ public class Location extends DateAt{
 
     private boolean status;
 
-//    @OneToMany
-//    private List<Job> jobList;
+
 
     @Override
     public String toString() {

@@ -18,8 +18,6 @@ public class JobField extends DateAt{
 
     private String name;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<Job> jobList;
 
     private boolean status;
 
