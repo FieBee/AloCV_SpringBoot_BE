@@ -27,8 +27,4 @@ public class User extends DateAt{
     private boolean isAdmin;
 
 
-
-
-
-
 }

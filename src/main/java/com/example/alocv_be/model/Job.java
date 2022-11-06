@@ -39,8 +39,6 @@ public class Job extends DateAt {
     private Long recruitNumber;
     private String gender;
 
-    @OneToMany
-    private List<CV> cvList;
 
 
     public Job() {

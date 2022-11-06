@@ -22,4 +22,7 @@ public class CV extends DateAt {
 
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Job job;
 }
