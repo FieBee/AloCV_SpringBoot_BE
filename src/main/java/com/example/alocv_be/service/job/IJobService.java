@@ -8,5 +8,5 @@ import java.util.List;
 
 @Service
 public interface IJobService extends IGerenalService<Job> {
-    List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String companyName);
+    List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String company);
 }

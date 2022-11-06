@@ -19,6 +19,8 @@ public class Location extends DateAt{
     private Long id;
 
     private String name;
+//    @OneToMany
+//    private List<Job> jobList;
 
     private boolean status;
 
