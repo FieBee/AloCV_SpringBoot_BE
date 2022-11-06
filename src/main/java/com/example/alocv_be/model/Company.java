@@ -1,4 +1,4 @@
-package com.example.alocv_be.model.entity;
+package com.example.alocv_be.model;
 
 
 import lombok.AllArgsConstructor;
@@ -9,27 +9,29 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
+@NoArgsConstructor
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     @OneToOne
     private Account account;
-    private String phoneNumber;
+    private String image;
+    private String address;
+    private Long staffNumber;
+    private String branch;
+    private String linkMap;
+    private String linkFb;
+
     @OneToMany
-    private List<CV> cvList;
+    private List<Job> jobList;
     @OneToMany
     private List<Notification> notificationList;
 
     private boolean status;
-
-
-    private String image;
 
 }

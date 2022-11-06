@@ -1,8 +1,6 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.model.entity.Job;
-import com.example.alocv_be.model.entity.JobData;
-import com.example.alocv_be.model.entity.User;
+import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.job.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

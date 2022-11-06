@@ -1,6 +1,6 @@
 package com.example.alocv_be.service.jobField;
 
-import com.example.alocv_be.model.entity.JobField;
+import com.example.alocv_be.model.JobField;
 import com.example.alocv_be.repo.JobFieldRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

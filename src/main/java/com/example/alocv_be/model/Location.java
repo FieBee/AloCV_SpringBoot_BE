@@ -1,5 +1,4 @@
-package com.example.alocv_be.model.entity;
-
+package com.example.alocv_be.model;
 
 
 import lombok.AllArgsConstructor;
@@ -11,17 +10,23 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Admin {
+@NoArgsConstructor
+public class Location {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Account account;
-    private boolean status;
-    
-    @OneToMany
-    private List<Notification> notificationList;
 
+    private String name;
+
+    private boolean status;
+
+//    @OneToMany
+//    private List<Job> jobList;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

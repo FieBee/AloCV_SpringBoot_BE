@@ -1,7 +1,6 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.model.entity.Company;
-import com.example.alocv_be.model.entity.User;
+import com.example.alocv_be.model.Company;
 import com.example.alocv_be.service.company.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

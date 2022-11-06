@@ -1,9 +1,7 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.model.entity.JobField;
-import com.example.alocv_be.model.entity.Notification;
+import com.example.alocv_be.model.JobField;
 import com.example.alocv_be.service.jobField.IJobFieldService;
-import com.example.alocv_be.service.notification.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
