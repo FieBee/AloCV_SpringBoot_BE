@@ -12,7 +12,7 @@ import java.util.List;
 @Table
 @Data
 @AllArgsConstructor
-public class Job {
+public class Job extends DateAt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

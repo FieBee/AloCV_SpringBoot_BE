@@ -14,12 +14,11 @@ import java.util.Set;
 @Entity
 @Data
 @Builder
-public class Account {
+public class Account extends DateAt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
 
     private String userName;
     private String password;
