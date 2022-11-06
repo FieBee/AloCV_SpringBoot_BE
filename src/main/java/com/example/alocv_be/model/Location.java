@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location {
+public class Location extends DateAt{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

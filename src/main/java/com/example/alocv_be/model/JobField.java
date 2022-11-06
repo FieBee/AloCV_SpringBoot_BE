@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
-public class JobField {
+public class JobField extends DateAt{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

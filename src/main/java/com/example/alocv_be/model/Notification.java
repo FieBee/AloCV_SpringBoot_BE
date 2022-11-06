@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notification {
+public class Notification extends DateAt{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

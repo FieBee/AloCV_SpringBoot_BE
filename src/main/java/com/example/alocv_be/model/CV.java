@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CV {
+public class CV extends DateAt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

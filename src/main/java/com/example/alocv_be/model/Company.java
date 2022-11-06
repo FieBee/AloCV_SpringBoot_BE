@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+public class Company extends DateAt{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
