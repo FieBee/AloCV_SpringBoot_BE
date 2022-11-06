@@ -1,6 +1,6 @@
 package com.example.alocv_be.repo;
 
-import com.example.alocv_be.model.entity.Job;
+import com.example.alocv_be.model.Job;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,10 +1,8 @@
-package com.example.alocv_be.model.entity;
+package com.example.alocv_be.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 @Data

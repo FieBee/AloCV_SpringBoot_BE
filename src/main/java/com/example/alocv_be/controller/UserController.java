@@ -1,10 +1,9 @@
 package com.example.alocv_be.controller;
 
 
-import com.example.alocv_be.model.entity.User;
+import com.example.alocv_be.model.User;
 import com.example.alocv_be.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

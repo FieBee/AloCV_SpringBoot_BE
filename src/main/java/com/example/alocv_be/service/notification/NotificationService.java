@@ -1,6 +1,6 @@
 package com.example.alocv_be.service.notification;
 
-import com.example.alocv_be.model.entity.Notification;
+import com.example.alocv_be.model.Notification;
 import com.example.alocv_be.repo.NotificationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

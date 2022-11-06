@@ -1,6 +1,6 @@
 package com.example.alocv_be.repo;
 
-import com.example.alocv_be.model.entity.JobField;
+import com.example.alocv_be.model.JobField;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.example.alocv_be.service.location;
 
-import com.example.alocv_be.model.entity.Location;
+import com.example.alocv_be.model.Location;
 import com.example.alocv_be.repo.LocationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

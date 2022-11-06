@@ -1,7 +1,7 @@
 package com.example.alocv_be.controller;
 
 
-import com.example.alocv_be.model.entity.Account;
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

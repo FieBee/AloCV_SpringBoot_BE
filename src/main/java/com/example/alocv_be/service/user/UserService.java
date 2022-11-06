@@ -1,6 +1,6 @@
 package com.example.alocv_be.service.user;
 
-import com.example.alocv_be.model.entity.User;
+import com.example.alocv_be.model.User;
 import com.example.alocv_be.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
