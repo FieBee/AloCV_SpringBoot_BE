@@ -1,6 +1,7 @@
 package com.example.alocv_be.controller;
 
 
+import com.example.alocv_be.config.dto.AccountResDTO;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,13 +21,15 @@ public class AccountController {
     @Autowired
     IAccountService accountService;
 
+    /**
+     * Phương
+     * @param pageable phân trang
+     * @return toàn bộ account đang có
+     */
     @GetMapping
-    public ResponseEntity<Iterable<Account>> findAllAccount(Pageable pageable){
-        List<Account> accounts = (List<Account>)accountService.findAll(pageable);
-        if (accounts.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(accounts,HttpStatus.OK);
+    public ResponseEntity<Iterable<AccountResDTO>> findAllAccount(Pageable pageable){
+        List<AccountResDTO> accountResDTOS = (List<AccountResDTO>) accountService.findAll(pageable);
+        return new ResponseEntity<>(accountResDTOS,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -19,4 +19,7 @@ public class CV extends DateAt {
     private String description;
     private String image;
     private boolean status;
+
+    @ManyToOne
+    private User user;
 }

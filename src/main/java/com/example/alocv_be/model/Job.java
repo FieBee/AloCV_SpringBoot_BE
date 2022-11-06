@@ -28,6 +28,8 @@ public class Job extends DateAt {
     @ManyToOne
     private Location location;
 
+    @ManyToOne
+    private Company company;
 
     private String position;
     private String experience;

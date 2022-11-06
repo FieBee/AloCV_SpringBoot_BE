@@ -22,15 +22,16 @@ public class User extends DateAt{
     @OneToOne
     private Account account;
     private String phoneNumber;
-    @OneToMany
-    private List<CV> cvList;
-    @OneToMany
-    private List<Notification> notificationList;
-
     private boolean status;
-
     private String image;
-
     private boolean isAdmin;
+
+
+//    @OneToMany
+//    private List<CV> cvList;
+//    @OneToMany
+//    private List<Notification> notificationList;
+
+
 
 }
