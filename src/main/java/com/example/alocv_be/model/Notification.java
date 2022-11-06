@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -22,4 +19,10 @@ public class Notification extends DateAt{
     private String content;
     private LocalDate time;
     private boolean status;
+
+    @ManyToOne
+    private Company company;
+
+    @ManyToOne
+    private User user;
 }

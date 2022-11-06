@@ -26,12 +26,14 @@ public class Company extends DateAt{
     private String branch;
     private String linkMap;
     private String linkFb;
-
-    @OneToMany
-    private List<Job> jobList;
-    @OneToMany
-    private List<Notification> notificationList;
-
     private boolean status;
+
+//    @OneToMany
+//    private List<Job> jobList;
+
+//    @OneToMany
+//    private List<Notification> notificationList;
+
+
 
 }

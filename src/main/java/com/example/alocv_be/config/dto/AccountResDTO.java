@@ -11,6 +11,4 @@ import lombok.Data;
 @AllArgsConstructor
 public class AccountResDTO {
     private String userName;
-
-
 }
