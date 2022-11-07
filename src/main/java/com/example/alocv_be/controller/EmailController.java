@@ -15,32 +15,31 @@ public class EmailController {
     @Autowired
     private MailService mailService;
 
-//    @GetMapping("/home")
-//    public String home(){
-//        Mail mail = new Mail();
+    @PostMapping("/gmail/{mail}")
+    public String home(@RequestParam Mail mail){
+        mail.setMailFrom("nhom1vjpPr0no1@gmail.com");
+        mail.setMailTo(String.valueOf(mail));
+        mail.setMailSubject("Spring Boot - Email Example");
+        mail.setMailContent("Learn How to send Email using Spring Boot!!!");
+
+        mailService.sendEmail(mail);
+        return "home";
+    }
+
+    //some other cMde
+
+//    @PostMapping(value = "/email")
+//    public ResponseEntity<Mail> enviarEmail(){
+//        try {
+//            Mail mail = new Mail();
 //        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
 //        mail.setMailTo("thoitran2107@gmail.com");
 //        mail.setMailSubject("Spring Boot - Email Example");
 //        mail.setMailContent("Learn How to send Email using Spring Boot!!!");
-//
-//        mailService.sendEmail(mail);
-//        return "home";
+//            mailService.sendEmail(mail);
+//            return new ResponseEntity<>(mail,  HttpStatus.OK);
+//        } catch( MailException e){
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
 //    }
-
-    //some other cMde
-
-    @PostMapping(value = "/email")
-    public ResponseEntity<Mail> enviarEmail(){
-        try {
-            Mail mail = new Mail();
-        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
-        mail.setMailTo("thoitran2107@gmail.com");
-        mail.setMailSubject("Spring Boot - Email Example");
-        mail.setMailContent("Learn How to send Email using Spring Boot!!!");
-            mailService.sendEmail(mail);
-            return new ResponseEntity<>(mail,  HttpStatus.OK);
-        } catch( MailException e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }
