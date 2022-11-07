@@ -1,5 +1,4 @@
-package com.example.alocv_be.model.entity;
-
+package com.example.alocv_be.model;
 
 
 import lombok.AllArgsConstructor;
@@ -13,15 +12,19 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Admin {
+public class User extends DateAt{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
+
     @OneToOne
     private Account account;
+    private String phoneNumber;
     private boolean status;
-    
-    @OneToMany
-    private List<Notification> notificationList;
+    private String image;
+    private boolean isAdmin;
+
 
 }

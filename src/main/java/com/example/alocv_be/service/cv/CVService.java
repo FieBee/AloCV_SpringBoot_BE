@@ -1,6 +1,6 @@
 package com.example.alocv_be.service.cv;
 
-import com.example.alocv_be.model.entity.CV;
+import com.example.alocv_be.model.CV;
 import com.example.alocv_be.repo.CVRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

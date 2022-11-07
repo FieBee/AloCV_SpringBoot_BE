@@ -2,9 +2,9 @@ package com.example.alocv_be.controller;
 
 
 
-import com.example.alocv_be.model.dto.AccountToken;
-import com.example.alocv_be.model.dto.AppRole;
-import com.example.alocv_be.model.entity.Account;
+import com.example.alocv_be.config.dto.AccountToken;
+import com.example.alocv_be.model.AppRole;
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.JwtService;
 import com.example.alocv_be.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

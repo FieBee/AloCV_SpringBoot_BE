@@ -1,8 +1,6 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.model.entity.CV;
-import com.example.alocv_be.model.entity.Notification;
-import com.example.alocv_be.service.cv.ICVService;
+import com.example.alocv_be.model.Notification;
 import com.example.alocv_be.service.notification.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

@@ -1,5 +1,6 @@
-package com.example.alocv_be.model.dto;
+package com.example.alocv_be.config.dto;
 
+import com.example.alocv_be.model.AppRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Data
-public class AccountToken{
+public class AccountToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

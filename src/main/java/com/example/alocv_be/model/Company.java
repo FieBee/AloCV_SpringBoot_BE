@@ -1,4 +1,4 @@
-package com.example.alocv_be.model.entity;
+package com.example.alocv_be.model;
 
 
 import lombok.AllArgsConstructor;
@@ -13,11 +13,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+public class Company extends DateAt{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
     @OneToOne
     private Account account;
     private String image;
@@ -26,12 +27,10 @@ public class Company {
     private String branch;
     private String linkMap;
     private String linkFb;
-
-    @OneToMany
-    private List<Job> jobList;
-    @OneToMany
-    private List<Notification> notificationList;
-
     private boolean status;
+
+
+
+
 
 }

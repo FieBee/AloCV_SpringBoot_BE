@@ -1,6 +1,6 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.model.entity.Job;
+import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.job.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/jobmot")
+@RequestMapping("/job")
 public class JobAllController {
 
     @Autowired
@@ -59,5 +59,14 @@ public class JobAllController {
         }
         jobService.remove(id);
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/{name}/{salaryRange}/{jobField}/{location}/{company}")
+    public ResponseEntity<List<Job>> findBy(@PathVariable String name, @PathVariable Long salaryRange, @PathVariable String jobField, @PathVariable String location, @PathVariable String company) {
+        List<Job> jobList = jobService.findJobBy(name, salaryRange,jobField, location, company );
+        if (jobList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        System.out.println(jobList);
+        return new ResponseEntity<>(jobList, HttpStatus.OK);
     }
 }

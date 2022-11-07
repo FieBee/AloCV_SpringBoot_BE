@@ -1,7 +1,8 @@
 package com.example.alocv_be.service.account;
 
 
-import com.example.alocv_be.model.entity.Account;
+import com.example.alocv_be.config.dto.AccountResDTO;
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.repo.AccountRepo;
 import com.example.alocv_be.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,13 +27,24 @@ public class AccountService implements IAccountService, UserDetailsService {
     UserRepo userRepo;
 
     @Override
-    public Iterable<Account> findAll(Pageable pageable) {
-        return accountRepo.findAll();
+    public Iterable<AccountResDTO> findAll(Pageable pageable) {
+        List<Account> accounts = (List<Account>) accountRepo.findAll();
+        List<AccountResDTO> accountResDTO = new ArrayList<>();
+        for (int i = 0; i < accounts.size(); i++) {
+            String userName = accounts.get(i).getUserName();
+            accountResDTO.add(new AccountResDTO(userName));
+        }
+        return accountResDTO;
     }
 
     @Override
     public Optional<Account> findById(Long id) {
         return accountRepo.findById(id);
+    }
+
+    @Override
+    public Object save(Object o) {
+        return null;
     }
 
     @Override

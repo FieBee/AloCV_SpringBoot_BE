@@ -1,4 +1,4 @@
-package com.example.alocv_be.model.entity;
+package com.example.alocv_be.model;
 
 
 import lombok.AllArgsConstructor;
@@ -12,22 +12,24 @@ import java.util.List;
 @Table
 @Data
 @AllArgsConstructor
-public class Job {
+public class Job extends DateAt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @Transient
+
     @ManyToOne
     private JobField jobField;
 
     private Long salaryRange;
 
-    @Transient
+
     @ManyToOne
     private Location location;
 
+    @ManyToOne
+    private Company company;
 
     private String position;
     private String experience;
@@ -37,8 +39,6 @@ public class Job {
     private Long recruitNumber;
     private String gender;
 
-    @OneToMany
-    private List<CV> cvList;
 
 
     public Job() {

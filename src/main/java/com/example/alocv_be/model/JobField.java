@@ -1,9 +1,8 @@
-package com.example.alocv_be.model.entity;
+package com.example.alocv_be.model;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,17 +10,24 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class Location {
+public class JobField extends DateAt{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+//    @OneToMany
+//    private List<Job> jobList;
+
 
     private boolean status;
 
-    @OneToMany
-    private List<Job> jobList;
+    public JobField() {
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
