@@ -15,32 +15,18 @@ public class EmailController {
     @Autowired
     private MailService mailService;
 
-    @GetMapping ("/home/{mailTo}")
-    public String home(@PathVariable String mailTo){
+    @PostMapping ("/mail/{mailTo}/")
+    public void home(@PathVariable String mailTo,String password){
         Mail mail = new Mail();
-        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
+        mail.setMailFrom("AloCV@gmail.com");
         mail.setMailTo(mailTo);
         mail.setMailSubject("Spring Boot - Email Example");
-        mail.setMailContent("Learn How to send Email using Spring Boot!!!");
-
+        mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
+                "Mật khẩu được cấp của bạn là: "+password+".");
         mailService.sendEmail(mail);
-        return "home";
     }
 
     //some other cMde
 
-//    @PostMapping(value = "/email")
-//    public ResponseEntity<Mail> enviarEmail(Mail mail){
-//        try {
-////            Mail mail = new Mail();
-////        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
-////        mail.setMailTo("thoitran2107@gmail.com");
-////        mail.setMailSubject("Spring Boot - Email Example");
-////        mail.setMailContent("Learn How to send Email using Spring Boot!!!");
-//            mailService.sendEmail(mail);
-//            return new ResponseEntity<>(mail,  HttpStatus.OK);
-//        } catch( MailException e){
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
 }
