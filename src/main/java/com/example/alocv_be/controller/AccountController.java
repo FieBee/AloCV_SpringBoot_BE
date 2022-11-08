@@ -4,6 +4,7 @@ package com.example.alocv_be.controller;
 import com.example.alocv_be.config.dto.AccountResDTO;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.account.IAccountService;
+import com.example.alocv_be.service.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,10 @@ import java.util.Optional;
 public class AccountController {
     @Autowired
     IAccountService accountService;
+
+    @Autowired
+    MailService mailService;
+
 
     /**
      * Phương
@@ -40,6 +45,7 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
+        this.mailService.sendEmail(account);
         return new ResponseEntity<>(accountService.save(account), HttpStatus.CREATED);
     }
 
