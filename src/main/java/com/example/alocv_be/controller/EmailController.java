@@ -15,7 +15,7 @@ public class EmailController {
     @Autowired
     private MailService mailService;
 
-    @PostMapping ("/mail/{mailTo}/")
+    @PostMapping ( "/mail/{mailTo}/{password}")
     public void home(@PathVariable String mailTo,String password){
         Mail mail = new Mail();
         mail.setMailFrom("AloCV@gmail.com");
