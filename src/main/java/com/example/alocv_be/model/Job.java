@@ -19,16 +19,16 @@ public class Job extends DateAt {
     private String name;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private JobField jobField;
 
     private Long salaryRange;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Location location;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Company company;
 
     private String position;
