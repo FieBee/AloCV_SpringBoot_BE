@@ -37,8 +37,8 @@ public class JobService implements IJobService {
 
 
     @Override
-    public List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String company) {
-        List<Job> jobList= jobRepo.findJobBy(name,salaryRange,jobField, location, company);
+    public List<Job> findJobBy(String name, Long salaryRange_min, Long salaryRange_max, String jobField, String location, String company) {
+        List<Job> jobList= jobRepo.findJobBy(name,salaryRange_min,salaryRange_max,jobField, location, company);
         return jobList;
     }
 }

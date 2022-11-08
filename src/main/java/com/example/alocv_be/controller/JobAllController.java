@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/job")
 public class JobAllController {
 
@@ -60,9 +61,25 @@ public class JobAllController {
         jobService.remove(id);
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
-    @GetMapping("/{name}/{salaryRange}/{jobField}/{location}/{company}")
-    public ResponseEntity<List<Job>> findBy(@PathVariable String name, @PathVariable Long salaryRange, @PathVariable String jobField, @PathVariable String location, @PathVariable String company) {
-        List<Job> jobList = jobService.findJobBy(name, salaryRange,jobField, location, company );
+    @GetMapping("search1/{name}/{salaryRange}/{jobField}/{location}/{company}")
+    public ResponseEntity<List<Job>> findBy(@RequestParam(value = "name", defaultValue = "a") String name, @PathVariable Long salaryRange_min,Long salaryRange_max, @PathVariable String jobField, @PathVariable String location, @PathVariable String company) {
+        List<Job> jobList = jobService.findJobBy(name, salaryRange_min,salaryRange_max,jobField, location, company );
+        if (jobList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        System.out.println(jobList);
+        return new ResponseEntity<>(jobList, HttpStatus.OK);
+    }
+ @GetMapping("/search")
+    public ResponseEntity<List<Job>> findBy2(@RequestParam(value = "name", defaultValue = "a") String name,
+                                             @RequestParam(value = "salaryRange_min", defaultValue = "0") String salaryRange_min,
+                                             @RequestParam(value = "salaryRange_max", defaultValue = "0") String salaryRange_max,
+                                             @RequestParam(value = "jobField", defaultValue = "a") String jobField,
+                                             @RequestParam(value = "location", defaultValue = "a") String location,
+                                             @RequestParam(value = "company", defaultValue = "a") String company) {
+        Long salaryRange1 = Long.valueOf(salaryRange_min);
+        Long salaryRange2 = Long.valueOf(salaryRange_max);
+        List<Job> jobList = jobService.findJobBy(name, salaryRange1,salaryRange2,jobField, location, company );
         if (jobList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
