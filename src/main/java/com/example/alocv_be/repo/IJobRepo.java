@@ -14,8 +14,8 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
             "INNER joiN job_field on e.job_field_id =job_field.id\n" +
             "INNER join location on e.location_id = location.id\n" +
             "INNER join company on e.company_id = company.id\n" +
-            "WHERE e.name = :name AND e.salary_range = :salary_range " +
-            "AND job_field.name = :job_field_name AND location.name = :location_name AND company.name = :company_name", nativeQuery = true)
+            "WHERE e.name ='' or e.name like "+'%'+":name"+'%'+" AND e.salary_range like :salary_range " +
+            "AND job_field.name like :job_field_name AND location.name like :location_name AND company.name like :company_name", nativeQuery = true)
     List<Job> findJobBy(@Param("name") String name,
                         @Param("salary_range") Long salaryRange,
                         @Param("job_field_name") String jobField,
