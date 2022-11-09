@@ -13,8 +13,13 @@ import java.util.Optional;
 public interface CompanyRepo extends PagingAndSortingRepository<Company, Long> {
     Optional<Company> findCompanyByAccount_UserName(String userName);
 
-//    phương thức in ra bảng jop có tuyển dung nhiều đến thấp
-    @Query("select new com.example.alocv_be.config.dto.TopJopCompanyDto(c.name, j.recruitNumber) from Company c join Job j on c.id = j.id" +
-            " order by j.recruitNumber DESC")
+//    phương thức in ra bảng jop có tuyển dung từ lớn nhất đến thấp nhất
+//    @Query("select new com.example.alocv_be.config.dto.TopJopCompanyDto(c.name, j.recruitNumber) from Company c join Job j on c.id = j.id" +
+//            " order by j.recruitNumber DESC")
+
+//    @Query("select new com.example.alocv_be.config.dto.TopJopCompanyDto(c.name, sum(j.recruitNumber)) from Company c join Job j on c.id = j.id" +
+//            " group by c.name order by j.recruitNumber DESC ")
+
+    @Query(value = "select c.name as name, sum(j.recruit_number) as recruitNumber from company c join job j on c.id = j.company_id group by c.name order by recruitNumber DESC",nativeQuery = true)
     List<TopJopCompanyDto> topJopCompany();
 }
