@@ -51,6 +51,9 @@ public class JobService implements IJobService {
     public List<Job> findJobByCompanyId(Long id) {
         return jobRepo.findJobByCompanyId(id);
     }
+    public List<Job> findJobByJobFieldId(Long id){
+        return jobRepo.findJobByJobFieldId(id);
+    }
 
 //    @Override
 //    public List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String company) {
