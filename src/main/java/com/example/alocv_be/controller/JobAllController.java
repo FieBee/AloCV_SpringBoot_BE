@@ -54,6 +54,15 @@ public class JobAllController {
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+    @GetMapping("/jobField/{id}")
+    public ResponseEntity<Iterable<Job>> findJobByJobFieldId(@PathVariable Long id){
+        List<Job> jobs =jobService.findJobByJobFieldId(id);
+        if (jobs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(jobs,HttpStatus.OK);
+
+        }
 
     @PostMapping
     public ResponseEntity<Job> saveJob(@RequestBody Job job) {
