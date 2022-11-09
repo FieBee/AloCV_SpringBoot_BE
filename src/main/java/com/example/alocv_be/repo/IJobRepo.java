@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
@@ -47,7 +48,8 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
 //                        @Param("job_field_name") String jobField,
 //                        @Param("location_name") String location,
 //                        @Param("c_name") String companyName);
-
+    List<Job> findJobByLocationId(Long id);
+    List<Job> findJobByCompanyId(Long id);
 
 }
 
