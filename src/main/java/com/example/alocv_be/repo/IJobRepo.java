@@ -27,27 +27,7 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
                         @Param("location_name") String location,
                         @Param("company_name") String company);
 
-//    @Query(value = "SELECT e.* FROM job as e\n" +
-//            "INNER joiN job_field on e.job_field_id =job_field.id\n" +
-//            "WHERE e.name = :name AND e.salary_range = :salary_range AND job_field.name = :job_field_name ", nativeQuery = true)
-//    List<Job> findJobBy(@Param("name") String name,
-//                        @Param("salary_range") Long salaryRange,
-//                        @Param("job_field_name") String jobField);
 
-
-//    @Query(value ="select * from job where\n" +
-//            "(SELECT e.* FROM job as e\n" +
-//            "INNER joiN job_field on e.job_field_id =job_field.id\n" +
-//            "INNER join location on e.location_id = location.id\n" +
-//            "WHERE e.name = :name AND e.salary_range = :salary_range AND job_field.name = :job_field_name  AND location.name = :location_name)\n" +
-//            "in (SELECT job.* FROM job\n" +
-//            "    join company c on jl.company_id = c.id\n" +
-//            "    where c.name = :c_name);", nativeQuery = true)
-//    List<Job> findJobBy(@Param("name") String name,
-//                        @Param("salary_range") Long salaryRange,
-//                        @Param("job_field_name") String jobField,
-//                        @Param("location_name") String location,
-//                        @Param("c_name") String companyName);
     List<Job> findJobByLocationId(Long id);
     List<Job> findJobByCompanyId(Long id);
     List<Job> findJobByJobFieldId(Long id);
