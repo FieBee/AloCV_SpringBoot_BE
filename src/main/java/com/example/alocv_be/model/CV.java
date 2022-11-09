@@ -23,6 +23,6 @@ public class CV extends DateAt {
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL )
     private Job job;
 }
