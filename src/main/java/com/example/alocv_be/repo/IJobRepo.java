@@ -50,6 +50,7 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
 //                        @Param("c_name") String companyName);
     List<Job> findJobByLocationId(Long id);
     List<Job> findJobByCompanyId(Long id);
+    List<Job> findJobByJobFieldId(Long id);
 
 }
 
