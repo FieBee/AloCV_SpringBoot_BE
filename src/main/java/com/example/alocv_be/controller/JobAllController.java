@@ -79,15 +79,15 @@ public class JobAllController {
         jobService.remove(id);
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
-    @GetMapping("search1/{name}/{salaryRange}/{jobField}/{location}/{company}")
-    public ResponseEntity<List<Job>> findBy(@RequestParam(value = "name", defaultValue = "a") String name, @PathVariable Long salaryRange_min,Long salaryRange_max, @PathVariable String jobField, @PathVariable String location, @PathVariable String company) {
-        List<Job> jobList = jobService.findJobBy(name, salaryRange_min,salaryRange_max,jobField, location, company );
-        if (jobList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        System.out.println(jobList);
-        return new ResponseEntity<>(jobList, HttpStatus.OK);
-    }
+//    @GetMapping("search1/{name}/{salaryRange}/{jobField}/{location}/{company}")
+//    public ResponseEntity<List<Job>> findBy(@RequestParam(value = "name", defaultValue = "a") String name, @PathVariable Long salaryRange_min,Long salaryRange_max, @PathVariable String jobField, @PathVariable String location, @PathVariable String company) {
+//        List<Job> jobList = jobService.findJobBy(name, salaryRange_min,salaryRange_max,jobField, location, company );
+//        if (jobList.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        System.out.println(jobList);
+//        return new ResponseEntity<>(jobList, HttpStatus.OK);
+//    }
  @GetMapping("/search")
     public ResponseEntity<List<Job>> findBy2(@RequestParam(value = "name", defaultValue = "a") String name,
                                              @RequestParam(value = "salaryRange_min", defaultValue = "0") String salaryRange_min,
