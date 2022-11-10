@@ -16,6 +16,7 @@ public class TopJobCompanyController {
     @Autowired
     CompanyRepo companyRepo;
 
+//    phương thức hiện các công ty có lượng tuyển dụng cao nhất trở xuống
     @GetMapping
     public ResponseEntity <List<TopJopCompanyDto>> topJopCompanyDtoList (){
         return ResponseEntity.ok(companyRepo.topJopCompany());
