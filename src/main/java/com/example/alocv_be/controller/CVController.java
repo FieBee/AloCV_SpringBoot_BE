@@ -1,6 +1,7 @@
 package com.example.alocv_be.controller;
 
 import com.example.alocv_be.model.CV;
+import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.cv.ICVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -54,5 +55,13 @@ public class CVController {
         }
         cvService.remove(id);
         return new ResponseEntity<>(cvOptional.get(), HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Iterable<CV>> findCVByUserId(@PathVariable Long id) {
+        List<CV> cvs = cvService.findCVByUserId(id);
+        if (cvs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 }

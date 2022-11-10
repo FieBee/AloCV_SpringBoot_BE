@@ -15,16 +15,16 @@ public class EmailController {
     @Autowired
     private MailService mailService;
 
-    @PostMapping ( "/mail/{mailTo}/{password}")
-    public void home(@PathVariable String mailTo,String password){
-        Mail mail = new Mail();
-        mail.setMailFrom("AloCV@gmail.com");
-        mail.setMailTo(mailTo);
-        mail.setMailSubject("Spring Boot - Email Example");
-        mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
-                "Mật khẩu được cấp của bạn là: "+password+".");
-        mailService.sendEmail(mail);
-    }
+//    @PostMapping ("/mail/{mailTo}/")
+//    public void home(@PathVariable String mailTo,String password){
+//        Mail mail = new Mail();
+//        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
+//        mail.setMailTo(mailTo);
+//        mail.setMailSubject("Spring Boot - Email Example");
+//        mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
+//                "Mật khẩu được cấp của bạn là: "+password+".");
+//        mailService.sendEmail(mail);
+//    }
 
     //some other cMde
 
