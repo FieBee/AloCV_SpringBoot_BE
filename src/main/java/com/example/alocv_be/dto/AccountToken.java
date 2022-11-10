@@ -1,4 +1,4 @@
-package com.example.alocv_be.config.dto;
+package com.example.alocv_be.dto;
 
 import com.example.alocv_be.model.AppRole;
 import lombok.AllArgsConstructor;
