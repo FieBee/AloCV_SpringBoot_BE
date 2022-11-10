@@ -20,8 +20,8 @@ public class JobAllController {
     private IJobService jobService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Job>> findAllJob(Pageable pageable) {
-        List<Job> jobs = (List<Job>) jobService.findAll(pageable);
+    public ResponseEntity<Iterable<Job>> findAllJob(Pageable pageable, @RequestParam Long id) {
+        List<Job> jobs = jobService.findAllByIdAndStatus(pageable,id,true);
         if (jobs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -85,7 +85,8 @@ public class JobAllController {
         if (!jobOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        jobService.remove(id);
+        jobOptional.get().setStatus(false);
+//        jobService.remove(id);
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
 
