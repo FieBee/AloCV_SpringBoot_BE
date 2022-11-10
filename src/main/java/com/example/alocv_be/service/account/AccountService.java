@@ -1,7 +1,8 @@
 package com.example.alocv_be.service.account;
 
 
-import com.example.alocv_be.config.dto.AccountResDTO;
+import com.example.alocv_be.dto.AccountResDTO;
+import com.example.alocv_be.dto.Alo123;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.repo.AccountRepo;
 import com.example.alocv_be.repo.UserRepo;
@@ -72,5 +73,8 @@ public class AccountService implements IAccountService, UserDetailsService {
         return accountRepo.findAccountByUserName(username);
     }
 
-
+   @Override
+    public Alo123 getAlo123(){
+        return this.accountRepo.getAlo123();
+    }
 }

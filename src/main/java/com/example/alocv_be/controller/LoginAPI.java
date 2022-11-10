@@ -2,7 +2,7 @@ package com.example.alocv_be.controller;
 
 
 
-import com.example.alocv_be.config.dto.AccountToken;
+import com.example.alocv_be.dto.AccountToken;
 import com.example.alocv_be.model.AppRole;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.JwtService;
