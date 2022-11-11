@@ -39,7 +39,7 @@ public class JobAllController {
 
     @GetMapping("/company/{id}")
     public ResponseEntity<Iterable<Job>> findJobByCompanyId(@PathVariable Long id) {
-        List<Job> jobs = jobService.findJobByCompanyId(id);
+        List<Job> jobs = jobService.findJobByCompanyIdAndStatusIsTrue(id);
         if (jobs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
