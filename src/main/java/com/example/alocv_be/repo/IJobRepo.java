@@ -27,13 +27,22 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
                         @Param("job_field_name") String jobField,
                         @Param("location_name") String location,
                         @Param("company_name") String company);
-
+    @Query(value = "SELECT e.* FROM job as e\n" +
+            "LEFT JOIN  cv on  e.id =cv.job_id\n" +
+            "LEFT JOIN  user on  cv.user_id = user.id\n" +
+            "WHERE user.id = :userId"
+            , nativeQuery = true)
+    List<Job> findJobByUserId(@Param("userId") Long userId);
 
     List<Job> findJobByLocationId(Long id);
     List<Job> findJobByCompanyIdAndStatusIsTrue(Long id);
     List<Job> findJobByJobFieldId(Long id);
     List<Job> findAllByIdAndStatus(Pageable pageable, Long id, boolean status);
 
+
+//    Hiện job mới đăng gần nhất
+    @Query(value = "select * from job j order by j.created_at desc ", nativeQuery = true)
+    public List<Job> getNewDisplayJob();
 }
 
 

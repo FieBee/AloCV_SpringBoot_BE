@@ -57,5 +57,14 @@ public class JobService implements IJobService {
     public List<Job> findAllByIdAndStatus(Pageable pageable, Long id,boolean status) {
         return jobRepo.findAllByIdAndStatus(pageable,id, status);
     }
+    @Override
+    public List<Job> findJobByUserId(Long id) {
+        return jobRepo.findJobByUserId(id);
+    }
+
+//    @Override
+//    public List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String company) {
+//        return null;
+//    }
 
 }

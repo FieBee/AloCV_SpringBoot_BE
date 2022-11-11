@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ICVService extends IGerenalService<CV> {
     List<CV> findCVByUserId(Long id);
+
+    List<CV> findCVByJobId(Long id);
 }

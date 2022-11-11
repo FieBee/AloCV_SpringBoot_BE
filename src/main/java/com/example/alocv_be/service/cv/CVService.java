@@ -38,4 +38,9 @@ public class CVService implements ICVService{
     public List<CV> findCVByUserId(Long id) {
         return cvRepo.findCVByUserId(id);
     }
+
+    @Override
+    public List<CV> findCVByJobId(Long id) {
+        return cvRepo.findCVByJobId(id);
+    }
 }
