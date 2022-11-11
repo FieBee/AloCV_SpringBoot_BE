@@ -11,4 +11,7 @@ import java.util.List;
 @Repository
 public interface CVRepo extends PagingAndSortingRepository<CV, Long> {
     List<CV> findCVByUserId(Long id);
+
+    List<CV> findCVByJobId(Long id);
+
 }
