@@ -27,7 +27,6 @@ public class Job extends DateAt {
 
     @ManyToOne
     private Location location;
-
     @ManyToOne
     private Company company;
 
@@ -38,11 +37,6 @@ public class Job extends DateAt {
     private String description;
     private Long recruitNumber;
     private String gender;
-
-
-
     public Job() {
     }
-
-
 }
