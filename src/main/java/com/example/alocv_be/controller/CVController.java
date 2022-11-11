@@ -71,7 +71,7 @@ public class CVController {
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 
-    @GetMapping("/job/{id}")
+    @GetMapping("/jobs/{id}")
     public ResponseEntity<Iterable<CV>> findCVByJobId(@PathVariable Long id) {
         List<CV> cvs = cvService.findCVByJobId(id);
         if (cvs.isEmpty()) {
