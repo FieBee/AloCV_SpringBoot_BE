@@ -103,4 +103,6 @@ public class JobAllController {
         System.out.println(jobList);
         return new ResponseEntity<>(jobList, HttpStatus.OK);
     }
+
+
 }

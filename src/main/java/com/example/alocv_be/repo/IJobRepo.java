@@ -32,6 +32,10 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
     List<Job> findJobByCompanyId(Long id);
     List<Job> findJobByJobFieldId(Long id);
 
+
+//    Hiện job mới đăng gần nhất
+    @Query(value = "select * from job j order by j.created_at desc ", nativeQuery = true)
+    public List<Job> getNewDisplayJob();
 }
 
 
