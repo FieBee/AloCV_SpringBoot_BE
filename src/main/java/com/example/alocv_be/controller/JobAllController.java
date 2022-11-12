@@ -66,7 +66,8 @@ public class JobAllController {
 
     @PostMapping
     public ResponseEntity<Job> saveJob(@RequestBody Job job) {
-        return new ResponseEntity<>(jobService.save(job), HttpStatus.CREATED);
+        job.setStatus(true);
+            return new ResponseEntity<>(jobService.save(job), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -86,6 +87,7 @@ public class JobAllController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         jobOptional.get().setStatus(false);
+        jobService.save(jobOptional.get());
 //        jobService.remove(id);
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
