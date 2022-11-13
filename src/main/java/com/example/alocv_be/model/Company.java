@@ -28,6 +28,7 @@ public class Company extends DateAt{
     private String linkMap;
     private String linkFb;
     private boolean status;
+    private String description;
 
 
 

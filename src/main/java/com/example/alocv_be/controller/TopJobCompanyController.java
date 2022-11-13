@@ -26,9 +26,7 @@ public class TopJobCompanyController {
         return ResponseEntity.ok(companyRepo.topJopCompany());
     }
 
-
 //    Phương thức in ra các job được đăng gần nhất
-
    @GetMapping("/newjob")
     public ResponseEntity<List<Job>> newDisplayJob () {
         return ResponseEntity.ok(jobRepo.getNewDisplayJob());
