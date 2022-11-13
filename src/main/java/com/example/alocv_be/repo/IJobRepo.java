@@ -20,6 +20,7 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
             " AND ( e.salary_range BETWEEN  "+":salary_range_min and :salary_range_max)" +
             " AND ( job_field.name like "+'%'+":job_field_name"+ "%)"+
             " AND ( location.name like "+'%'+":location_name"+"%)"+
+            " AND  e.status = true"+
             " AND ( company.name like "+'%'+":company_name"+"%)", nativeQuery = true)
     List<Job> findJobBy(@Param("name") String name,
                         @Param("salary_range_min") Long salaryRange_min,
@@ -34,15 +35,19 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
             , nativeQuery = true)
     List<Job> findJobByUserId(@Param("userId") Long userId);
 
+    List<Job> findAllByStatusIsTrue();
+
     List<Job> findJobByLocationId(Long id);
+    List<Job> findJobByLocationIdAndStatusIsTrue(Long id);
     List<Job> findJobByCompanyIdAndStatusIsTrue(Long id);
     List<Job> findJobByJobFieldId(Long id);
+    List<Job> findJobByJobFieldIdAndStatusIsTrue(Long id);
     List<Job> findAllByIdAndStatus(Pageable pageable, Long id, boolean status);
 
 
 //    Hiện job mới đăng gần nhất
-    @Query(value = "select * from job j order by j.created_at desc ", nativeQuery = true)
-    public List<Job> getNewDisplayJob();
+    @Query(value = "select * from job j order by j.created_at desc WHERE j.status = true", nativeQuery = true)
+     List<Job> getNewDisplayJob();
 }
 
 
