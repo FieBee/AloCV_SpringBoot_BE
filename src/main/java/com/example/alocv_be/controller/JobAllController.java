@@ -20,14 +20,13 @@ public class JobAllController {
     private IJobService jobService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Job>> findAllJob(Pageable pageable, @RequestParam Long id) {
-        List<Job> jobs = jobService.findAllByIdAndStatus(pageable,id,true);
+    public ResponseEntity<Iterable<Job>> findAllJob(Pageable pageable) {
+        List<Job> jobs = (List<Job>) jobService.findAll(pageable);
         if (jobs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Job> findJobById(@PathVariable Long id) {
         Optional<Job> job = jobService.findById(id);
