@@ -17,6 +17,6 @@ public interface CompanyRepo extends PagingAndSortingRepository<Company, Long> {
 //    @Query("select new com.example.alocv_be.config.dto.TopJopCompanyDto(c.name, j.recruitNumber) from Company c join Job j on c.id = j.id" +
 //            " order by j.recruitNumber DESC")
 
-    @Query(value = "select c.name as name, sum(j.recruit_number) as recruitNumber from company c join job j on c.id = j.company_id group by c.name order by recruitNumber DESC",nativeQuery = true)
+    @Query(value = "select c.id as id, c.name as name, c.image as image, sum(j.recruit_number) as recruitNumber from company c join job j on c.id = j.company_id group by c.name order by recruitNumber DESC",nativeQuery = true)
     List<TopJopCompanyDto> topJopCompany();
 }
