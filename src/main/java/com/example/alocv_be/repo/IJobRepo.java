@@ -1,6 +1,7 @@
 package com.example.alocv_be.repo;
 
 import com.example.alocv_be.model.Job;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -34,8 +35,9 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
     List<Job> findJobByUserId(@Param("userId") Long userId);
 
     List<Job> findJobByLocationId(Long id);
-    List<Job> findJobByCompanyId(Long id);
+    List<Job> findJobByCompanyIdAndStatusIsTrue(Long id);
     List<Job> findJobByJobFieldId(Long id);
+    List<Job> findAllByIdAndStatus(Pageable pageable, Long id, boolean status);
 
 
 //    Hiện job mới đăng gần nhất
