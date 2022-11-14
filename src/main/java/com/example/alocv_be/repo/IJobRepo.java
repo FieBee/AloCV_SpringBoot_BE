@@ -46,7 +46,7 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
 
 
 //    Hiện job mới đăng gần nhất
-    @Query(value = "select * from job j order by j.created_at desc WHERE j.status = true", nativeQuery = true)
+    @Query(value = "select * from job j WHERE j.status = true order by j.created_at desc ", nativeQuery = true)
      List<Job> getNewDisplayJob();
 }
 
