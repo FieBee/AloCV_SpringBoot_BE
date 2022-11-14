@@ -1,6 +1,6 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.config.dto.TopJopCompanyDto;
+import com.example.alocv_be.dto.TopJopCompanyDto;
 import com.example.alocv_be.model.Job;
 import com.example.alocv_be.repo.CompanyRepo;
 import com.example.alocv_be.repo.IJobRepo;
