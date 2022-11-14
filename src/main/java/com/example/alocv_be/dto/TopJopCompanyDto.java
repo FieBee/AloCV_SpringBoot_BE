@@ -1,4 +1,4 @@
-package com.example.alocv_be.dto;
+package com.example.alocv_be.config.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
