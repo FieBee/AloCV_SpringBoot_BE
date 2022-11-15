@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AccountRepo extends PagingAndSortingRepository<Account, Long> {
     Account findAccountById(Long id);
@@ -16,4 +18,16 @@ public interface AccountRepo extends PagingAndSortingRepository<Account, Long> {
             "FROM job as e\n" +
             "         LEFT JOIN  company on e.company_id = company.id limit 1", nativeQuery = true)
     Alo123 getAlo123();
+
+    @Query(value = "SELECT *" +
+            "FROM account \n" +
+            " JOIN  account_app_role on account.id = account_app_role.account_id "+
+            "WHERE account_app_role.app_role_id = 3 ", nativeQuery = true)
+    List<Account> findAccountUser();
+
+    @Query(value = "SELECT *" +
+            "FROM account \n" +
+            "JOIN  account_app_role on account.id = account_app_role.account_id "+
+            "WHERE account_app_role.app_role_id = 2 ", nativeQuery = true)
+    List<Account> findAccountCompany();
 }

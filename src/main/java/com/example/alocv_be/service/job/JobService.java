@@ -14,14 +14,15 @@ public class JobService implements IJobService {
 
     @Autowired
     private IJobRepo jobRepo;
-    @Override
-    public List<Job>findAllJob() {
-        return jobRepo.findAllJob();
-    }
 
     @Override
     public Iterable<Job> findAll(Pageable pageable) {
         return jobRepo.findAllByStatusIsTrue();
+    }
+
+    @Override
+    public List<Job> findAllJob() {
+        return jobRepo.findAll();
     }
 
     @Override
