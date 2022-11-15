@@ -2,7 +2,7 @@ package com.example.alocv_be.controller;
 
 
 
-import com.example.alocv_be.config.dto.AccountToken;
+import com.example.alocv_be.dto.AccountToken;
 import com.example.alocv_be.model.AppRole;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.JwtService;
@@ -50,6 +50,8 @@ public class LoginAPI {
                     .password(account1.getPassword())
                     .appRole( account1.getAppRole())
                     .token(token)
+                    .status(account1.getStatus())
+                    .active(account1.getActive())
                     .build();
             return new ResponseEntity<>(accountToken,HttpStatus.OK);
         } catch (Exception e) {

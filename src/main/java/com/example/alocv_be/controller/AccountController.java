@@ -1,16 +1,17 @@
 package com.example.alocv_be.controller;
 
 
-import com.example.alocv_be.config.dto.AccountResDTO;
+import com.example.alocv_be.dto.AccountResDTO;
+import com.example.alocv_be.dto.Alo123;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.account.IAccountService;
+import com.example.alocv_be.service.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,10 @@ import java.util.Optional;
 public class AccountController {
     @Autowired
     IAccountService accountService;
+
+    @Autowired
+    MailService mailService;
+
 
     /**
      * Phương
@@ -40,6 +45,8 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
+        this.mailService.sendEmail(account);
+        account.setStatus(true);
         return new ResponseEntity<>(accountService.save(account), HttpStatus.CREATED);
     }
 
@@ -53,15 +60,53 @@ public class AccountController {
         return new ResponseEntity<>(accountService.save(account),HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/block/{id}")
     public ResponseEntity<Account> deleteAccount(@PathVariable Long id){
         Optional<Account> accounts = accountService.findById(id);
         if (!accounts.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        accountService.remove(id);
+        accounts.get().setStatus(false);
+        accountService.save(accounts.get());
         return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
     }
 
+    @DeleteMapping("/unblock/{id}")
+    public ResponseEntity<Account> unBlockAccount(@PathVariable Long id){
+        Optional<Account> accounts = accountService.findById(id);
+        if (!accounts.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        accounts.get().setStatus(true);
+        accountService.save(accounts.get());
+        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+    }
 
+    @DeleteMapping("/setActive/{id}")
+    public ResponseEntity<Account> setAciveAccountIsTrue(@PathVariable Long id){
+        Optional<Account> accounts = accountService.findById(id);
+        if (!accounts.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        accounts.get().setActive(true);
+        accountService.save(accounts.get());
+        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+    }
+
+    @GetMapping("/alo123")
+    public ResponseEntity<Alo123> getAlo(){
+        return new ResponseEntity<>(accountService.getAlo123(),HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getUser")
+    public ResponseEntity<Iterable<Account>> findAllAccountUser(){
+        List<Account> accounts = (List<Account>) accountService.findAccountUser();
+        return new ResponseEntity<>(accounts,HttpStatus.OK);
+    }
+    @GetMapping("/getCompany")
+    public ResponseEntity<Iterable<Account>> findAllAccountCompany(){
+        List<Account> accounts = (List<Account>) accountService.findAccountCompany();
+        return new ResponseEntity<>(accounts,HttpStatus.OK);
+    }
 }

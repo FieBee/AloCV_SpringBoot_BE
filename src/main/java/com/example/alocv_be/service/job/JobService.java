@@ -17,6 +17,11 @@ public class JobService implements IJobService {
 
     @Override
     public Iterable<Job> findAll(Pageable pageable) {
+        return jobRepo.findAllByStatusIsTrue();
+    }
+
+    @Override
+    public List<Job> findAllJob() {
         return jobRepo.findAll();
     }
 
@@ -37,8 +42,34 @@ public class JobService implements IJobService {
 
 
     @Override
-    public List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String company) {
-        List<Job> jobList= jobRepo.findJobBy(name,salaryRange,jobField, location, company);
+    public List<Job> findJobBy(String name, Long salaryRange_min, Long salaryRange_max, String jobField, String location, String company) {
+        List<Job> jobList= jobRepo.findJobBy(name,salaryRange_min,salaryRange_max,jobField, location, company);
         return jobList;
     }
+
+    @Override
+    public List<Job> findJobByLocationId(Long id) {
+        return jobRepo.findJobByLocationIdAndStatusIsTrue(id);
+    }
+
+    @Override
+    public List<Job> findJobByCompanyIdAndStatusIsTrue(Long id) {
+        return jobRepo.findJobByCompanyIdAndStatusIsTrue(id);
+    }
+    public List<Job> findJobByJobFieldId(Long id){
+        return jobRepo.findJobByJobFieldIdAndStatusIsTrue(id);
+    }
+    public List<Job> findAllByIdAndStatus(Pageable pageable, Long id,boolean status) {
+        return jobRepo.findAllByIdAndStatus(pageable,id, status);
+    }
+    @Override
+    public List<Job> findJobByUserId(Long id) {
+        return jobRepo.findJobByUserId(id);
+    }
+
+//    @Override
+//    public List<Job> findJobBy(String name, Long salaryRange, String jobField, String location, String company) {
+//        return null;
+//    }
+
 }

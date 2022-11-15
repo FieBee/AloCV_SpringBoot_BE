@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class CompanyService implements ICompanyService{
@@ -36,4 +37,6 @@ public class CompanyService implements ICompanyService{
     public Optional<Company> findCompanyByAccount_UserName(String userName) {
         return companyRepo.findCompanyByAccount_UserName(userName);
     }
+
+
 }
