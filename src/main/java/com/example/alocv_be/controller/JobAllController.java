@@ -27,6 +27,16 @@ public class JobAllController {
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+
+    @GetMapping("/admin")
+    public ResponseEntity<Iterable<Job>> findAll() {
+        List<Job> jobs = jobService.findAllJob();
+        if (jobs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Job> findJobById(@PathVariable Long id) {
         Optional<Job> job = jobService.findById(id);
