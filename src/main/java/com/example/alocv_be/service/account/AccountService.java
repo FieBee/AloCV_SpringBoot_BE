@@ -70,7 +70,8 @@ public class AccountService implements IAccountService, UserDetailsService {
 
     @Override
     public Account findAccountByUserName(String username) {
-        return accountRepo.findAccountByUserName(username);
+        Account account = accountRepo.findAccountByUserName(username);
+            return account;
     }
 
    @Override
