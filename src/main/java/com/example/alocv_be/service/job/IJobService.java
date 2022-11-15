@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public interface IJobService extends IGerenalService<Job> {
+    List<Job> findAllJob();
     List<Job> findJobByLocationId(Long id);
     List<Job> findJobByCompanyIdAndStatusIsTrue(Long id);
     List<Job> findJobByJobFieldId(Long id);
