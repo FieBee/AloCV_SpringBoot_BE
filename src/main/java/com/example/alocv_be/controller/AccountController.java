@@ -74,4 +74,15 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getAlo123(),HttpStatus.OK);
     }
 
+
+    @GetMapping("/getUser")
+    public ResponseEntity<Iterable<Account>> findAllAccountUser(){
+        List<Account> accounts = (List<Account>) accountService.findAccountUser();
+        return new ResponseEntity<>(accounts,HttpStatus.OK);
+    }
+    @GetMapping("/getCompany")
+    public ResponseEntity<Iterable<Account>> findAllAccountCompany(){
+        List<Account> accounts = (List<Account>) accountService.findAccountCompany();
+        return new ResponseEntity<>(accounts,HttpStatus.OK);
+    }
 }

@@ -21,6 +21,11 @@ public class JobService implements IJobService {
     }
 
     @Override
+    public List<Job> findAllJob() {
+        return jobRepo.findAll();
+    }
+
+    @Override
     public Optional<Job> findById(Long id) {
         return jobRepo.findById(id);
     }
