@@ -18,5 +18,6 @@ public interface IJobService extends IGerenalService<Job> {
     List<Job> findJobBy(String name, Long salaryRange_min, Long salaryRange_max, String jobField, String location, String company);
 
     List<Job> findJobByUserId(Long id);
+    List<Job>findAllJob();
 
 }

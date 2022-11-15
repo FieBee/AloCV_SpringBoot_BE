@@ -14,6 +14,10 @@ public class JobService implements IJobService {
 
     @Autowired
     private IJobRepo jobRepo;
+    @Override
+    public List<Job>findAllJob() {
+        return jobRepo.findAllJob();
+    }
 
     @Override
     public Iterable<Job> findAll(Pageable pageable) {
