@@ -13,5 +13,6 @@ public interface CVRepo extends PagingAndSortingRepository<CV, Long> {
     List<CV> findCVByUserId(Long id);
 
     List<CV> findCVByJobId(Long id);
+    List<CV> findCVByUserIdAndStatusIsTrue(Long id);
 
 }

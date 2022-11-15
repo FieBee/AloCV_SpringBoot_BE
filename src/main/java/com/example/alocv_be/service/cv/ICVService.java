@@ -10,4 +10,5 @@ public interface ICVService extends IGerenalService<CV> {
     List<CV> findCVByUserId(Long id);
 
     List<CV> findCVByJobId(Long id);
+    List<CV> findCVByUserIdAndStatusIsTrue(Long id);
 }
