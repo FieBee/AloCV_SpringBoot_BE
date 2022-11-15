@@ -36,9 +36,25 @@ public class CVController {
         }
         return new ResponseEntity<>(cvOptional.get(), HttpStatus.OK);
     }
-
+    @GetMapping("/status/{id}")
+    public ResponseEntity<Iterable<CV>> findCVByUserIdAndStatusIsTrue(@PathVariable Long id) {
+        List<CV> cvs = cvService.findCVByUserIdAndStatusIsTrue(id);
+        if (cvs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(cvs, HttpStatus.OK);
+    }
+    @GetMapping("/statusTrue/{id}")
+    public ResponseEntity<Iterable<CV>> getCVByUserIdAndStatusIsTrue(@PathVariable Long id) {
+        List<CV> cvs = cvService.findCVByUserIdAndStatusIsTrue(id);
+        if (cvs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(cvs, HttpStatus.OK);
+    }
     @PostMapping
     public ResponseEntity<CV> saveCV(@RequestBody CV cv) {
+        cv.setStatus(true);
         return new ResponseEntity<>(cvService.save(cv), HttpStatus.CREATED);
     }
 
@@ -79,4 +95,16 @@ public class CVController {
         }
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
+    @DeleteMapping("/status/{id}")
+    public ResponseEntity<CV> deleteCVByStatus(@PathVariable Long id) {
+        Optional<CV> cvOptional = cvService.findById(id);
+        if (!cvOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        cvOptional.get().setStatus(false);
+        cvService.save(cvOptional.get());
+//        jobService.remove(id);
+        return new ResponseEntity<>(cvOptional.get(), HttpStatus.NO_CONTENT);
+    }
+
 }
