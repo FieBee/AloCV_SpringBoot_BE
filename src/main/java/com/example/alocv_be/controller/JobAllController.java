@@ -101,7 +101,7 @@ public class JobAllController {
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/unlock/{id}")
     public ResponseEntity<Job> unlockJob(@PathVariable Long id) {
         Optional<Job> jobOptional = jobService.findById(id);
         if (!jobOptional.isPresent()) {
