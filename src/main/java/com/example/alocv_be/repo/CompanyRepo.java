@@ -1,6 +1,6 @@
 package com.example.alocv_be.repo;
 
-import com.example.alocv_be.dto.TopJopCompanyDto;
+import com.example.alocv_be.config.dto.TopJopCompanyDto;
 import com.example.alocv_be.model.Company;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
