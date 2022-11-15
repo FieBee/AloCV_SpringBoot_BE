@@ -101,7 +101,18 @@ public class JobAllController {
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/search")
+    @DeleteMapping("/unlock/{id}")
+    public ResponseEntity<Job> unlockJob(@PathVariable Long id) {
+        Optional<Job> jobOptional = jobService.findById(id);
+        if (!jobOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        jobOptional.get().setStatus(true);
+        jobService.save(jobOptional.get());
+        return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
+    }
+
+ @GetMapping("/search")
     public ResponseEntity<List<Job>> findBy2(@RequestParam(value = "name", required = false) String name,
                                              @RequestParam(value = "salaryRange_min",required = false, defaultValue = "0") Long salaryRange_min,
                                              @RequestParam(value = "salaryRange_max",required = false, defaultValue = "1000000000") Long salaryRange_max,

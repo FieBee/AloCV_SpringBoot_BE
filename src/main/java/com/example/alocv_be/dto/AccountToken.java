@@ -33,6 +33,9 @@ public class AccountToken {
 
     private String token;
 
+    private boolean status;
+    private boolean active;
+
 
 
 }

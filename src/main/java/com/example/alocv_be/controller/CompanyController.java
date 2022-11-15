@@ -1,5 +1,6 @@
 package com.example.alocv_be.controller;
 
+import com.example.alocv_be.model.CV;
 import com.example.alocv_be.model.Company;
 import com.example.alocv_be.service.company.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +67,4 @@ public class CompanyController {
         }
         return new ResponseEntity<>(company.get(), HttpStatus.OK);
     }
-
 }
