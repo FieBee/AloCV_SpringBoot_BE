@@ -18,4 +18,7 @@ public interface IAccountService extends IGerenalService {
     Account findAccountByUserName(String account);
 
     Alo123 getAlo123();
+
+    Iterable<Account>findAccountUser();
+    Iterable<Account>findAccountCompany();
 }

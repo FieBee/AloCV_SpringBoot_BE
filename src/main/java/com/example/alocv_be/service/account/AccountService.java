@@ -77,4 +77,14 @@ public class AccountService implements IAccountService, UserDetailsService {
     public Alo123 getAlo123(){
         return this.accountRepo.getAlo123();
     }
+
+    @Override
+    public Iterable<Account> findAccountUser() {
+        return accountRepo.findAccountUser();
+    }
+
+    @Override
+    public Iterable<Account> findAccountCompany() {
+        return accountRepo.findAccountCompany();
+    }
 }
