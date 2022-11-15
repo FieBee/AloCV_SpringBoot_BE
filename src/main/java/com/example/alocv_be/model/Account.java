@@ -25,5 +25,15 @@ public class Account extends DateAt {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AppRole> appRole;
+    private boolean status;
 
+    private boolean active;
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    public boolean getActive() {
+        return this.active;
+    }
 }

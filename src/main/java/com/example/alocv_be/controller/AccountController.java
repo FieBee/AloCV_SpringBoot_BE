@@ -46,6 +46,7 @@ public class AccountController {
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
         this.mailService.sendEmail(account);
+        account.setStatus(true);
         return new ResponseEntity<>(accountService.save(account), HttpStatus.CREATED);
     }
 
@@ -59,13 +60,36 @@ public class AccountController {
         return new ResponseEntity<>(accountService.save(account),HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/block/{id}")
     public ResponseEntity<Account> deleteAccount(@PathVariable Long id){
         Optional<Account> accounts = accountService.findById(id);
         if (!accounts.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        accountService.remove(id);
+        accounts.get().setStatus(false);
+        accountService.save(accounts.get());
+        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/unblock/{id}")
+    public ResponseEntity<Account> unBlockAccount(@PathVariable Long id){
+        Optional<Account> accounts = accountService.findById(id);
+        if (!accounts.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        accounts.get().setStatus(true);
+        accountService.save(accounts.get());
+        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/setActive/{id}")
+    public ResponseEntity<Account> setAciveAccountIsTrue(@PathVariable Long id){
+        Optional<Account> accounts = accountService.findById(id);
+        if (!accounts.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        accounts.get().setActive(true);
+        accountService.save(accounts.get());
         return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
     }
 

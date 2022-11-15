@@ -20,17 +20,16 @@ public class MailServiceImpl implements MailService{
     public void sendEmail(Account account) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         Mail mail = new Mail();
-        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
+        mail.setMailFrom("nhom1codegymc0522g1@gmail.com");
         mail.setMailTo(account.getUserName());
         mail.setMailSubject("Spring Boot - Email Example");
         mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
                 "Mật khẩu được cấp của bạn là: "+account.getPassword()+".");
         try {
-
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
             mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "nhom1vjppronumber1@gmail.com"));
+            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "nhom1codegymc0522g1@gmail.com"));
             mimeMessageHelper.setTo(mail.getMailTo());
             mimeMessageHelper.setText(mail.getMailContent());
 

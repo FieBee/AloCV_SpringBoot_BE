@@ -50,6 +50,8 @@ public class LoginAPI {
                     .password(account1.getPassword())
                     .appRole( account1.getAppRole())
                     .token(token)
+                    .status(account1.getStatus())
+                    .active(account1.getActive())
                     .build();
             return new ResponseEntity<>(accountToken,HttpStatus.OK);
         } catch (Exception e) {
