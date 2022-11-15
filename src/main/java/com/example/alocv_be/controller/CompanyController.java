@@ -67,4 +67,24 @@ public class CompanyController {
         }
         return new ResponseEntity<>(company.get(), HttpStatus.OK);
     }
+
+    @PostMapping("/setSuggestTrue/{id}")
+    public ResponseEntity<Company> setSuggestTrue(@PathVariable Long id){
+        Optional<Company> newCompany = companyService.findById(id);
+        if (newCompany == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        newCompany.get().setSuggest(true);
+        return new ResponseEntity<>(companyService.save(newCompany.get()),HttpStatus.OK);
+    }
+
+    @PostMapping("/setSuggestFalse/{id}")
+    public ResponseEntity<Company> setSuggestFalse(@PathVariable Long id){
+        Optional<Company> newCompany = companyService.findById(id);
+        if (newCompany == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        newCompany.get().setSuggest(false);
+        return new ResponseEntity<>(companyService.save(newCompany.get()),HttpStatus.OK);
+    }
 }
