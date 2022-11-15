@@ -45,6 +45,7 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
     List<Job> findJobByJobFieldId(Long id);
     List<Job> findJobByJobFieldIdAndStatusIsTrue(Long id);
     List<Job> findAllByIdAndStatus(Pageable pageable, Long id, boolean status);
+    List<Job>findJobByUserIdAndStatusIsTrue(Long id);
 
 
 //    Hiện job mới đăng gần nhất

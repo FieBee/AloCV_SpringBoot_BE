@@ -125,4 +125,13 @@ public class JobAllController {
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+    @GetMapping("/findByUserId/{id}")
+    public ResponseEntity<List<Job>> findJobByUserIdAndStatusIsTrue(@PathVariable Long id){
+        List<Job> jobs = jobService.findJobByUserIdAndStatusIsTrue(id);
+        if (jobs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
 }
