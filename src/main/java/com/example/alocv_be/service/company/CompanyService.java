@@ -38,5 +38,11 @@ public class CompanyService implements ICompanyService{
         return companyRepo.findCompanyByAccount_UserName(userName);
     }
 
+    @Override
+    public List<Company> getCompanyBySuggestIsTrue() {
+        return companyRepo.getCompanySuggest();
+    }
+
+
 
 }

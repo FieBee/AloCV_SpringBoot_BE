@@ -40,7 +40,7 @@ public class Job extends DateAt {
     private boolean status;
     @ManyToOne
     private User user;
-
+    private String highlight;
     public Job() {
     }
 }
