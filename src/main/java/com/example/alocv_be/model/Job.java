@@ -38,6 +38,7 @@ public class Job extends DateAt {
     private Long recruitNumber;
     private String gender;
     private boolean status;
+    private String highlight;
 
     public Job() {
     }
