@@ -97,7 +97,7 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void shareJob(String user1, String user2, String link) {
+    public void shareJob(String user1, String user2, String jobId) {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         Mail mail = new Mail();
@@ -105,7 +105,7 @@ public class MailServiceImpl implements MailService {
         mail.setMailTo(user2);
         mail.setMailSubject("AloCV - Chia sẻ việc làm!");
         mail.setMailContent("Bạn nhận được một chia sẻ việc làm từ: '" + user1 + "',\n" +
-                "Nhấn vào đây để xem chi tiết: " + link);
+                "Nhấn vào đây để xem chi tiết: http://localhost:4200/job/job-detail/" + jobId);
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
