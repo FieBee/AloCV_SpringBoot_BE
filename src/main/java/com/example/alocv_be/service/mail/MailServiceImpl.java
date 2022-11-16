@@ -24,16 +24,16 @@ public class MailServiceImpl implements MailService {
     public void sendEmail(Account account) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         Mail mail = new Mail();
-        mail.setMailFrom("nhom1codegymc0522g1@gmail.com");
+        mail.setMailFrom("AloCV@gmail.com");
         mail.setMailTo(account.getUserName());
-        mail.setMailSubject("Spring Boot - Email Example");
+        mail.setMailSubject("AloCV - Tạo tài khoản");
         mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
                 "Mật khẩu được cấp của bạn là: " + account.getPassword() + ".");
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
             mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "nhom1codegymc0522g1@gmail.com"));
+            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
             mimeMessageHelper.setTo(mail.getMailTo());
             mimeMessageHelper.setText(mail.getMailContent());
 
@@ -52,23 +52,23 @@ public class MailServiceImpl implements MailService {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         Mail mail = new Mail();
-        mail.setMailFrom("nhom1codegymc0522g1@gmail.com");
+        mail.setMailFrom("ALoCV@gmail.com");
         mail.setMailTo(user.getAccount().getUserName());
         mail.setMailSubject(job.get().getCompany().getName());
-        mail.setMailContent("Thân gửi:  Bạn" + user.getAccount().getAppRole() + ",\n" +
-                "        Cảm ơn bạn đã quan tâm và ứng tuyển vị trí "+ job.get().getName() +". Qua hồ sơ của bạn, Công ty nhận thấy bạn là ứng viên tiềm năng và phù hợp với vị trí này.\n" +
+        mail.setMailContent("Thân gửi:  Bạn" + user.getAccount().getUserName() + ",\n" +
+                "Cảm ơn bạn đã quan tâm và ứng tuyển vị trí "+ job.get().getName() +". Qua hồ sơ của bạn, Công ty nhận thấy bạn là ứng viên tiềm năng và phù hợp với vị trí này.\n" +
                 "\n" +
-                "        Để bạn có thể hiểu rõ hơn về Công ty và vị trí ứng tuyển, cũng như tạo điều kiện cho Công ty đánh giá chính xác hơn về kiến thức, năng lực, kinh nghiệm làm việc và mức độ phù hợp của bạn với vị trí,"+ job.get().getCompany().getName()+" trân trọng mời bạn tham dự buổi phỏng vấn trực tiếp tại văn phòng công ty, chi tiết như sau:\n" +
+                "Để bạn có thể hiểu rõ hơn về Công ty và vị trí ứng tuyển, cũng như tạo điều kiện cho Công ty đánh giá chính xác hơn về kiến thức, năng lực, kinh nghiệm làm việc và mức độ phù hợp của bạn với vị trí,"+ job.get().getCompany().getName()+" trân trọng mời bạn tham dự buổi phỏng vấn trực tiếp tại văn phòng công ty, chi tiết như sau:\n" +
                 "\n" +
-                "1. Vị trí phỏng vấn:       "+ job.get().getName() +"\n" +
+                "        1. Vị trí phỏng vấn:       "+ job.get().getName() +"\n" +
                 "\n" +
-                "2. Thời gian phỏng vấn: 16h00 chiều thứ 5 ngày 05/05/2022\n" +
+                "        2. Thời gian phỏng vấn: 16h00 chiều thứ 5 ngày 05/05/2022\n" +
                 "\n" +
-                "3. Địa điểm: " +job.get().getCompany().getAddress() +"\n" +
+                "        3. Địa điểm: " +job.get().getCompany().getAddress() +"\n" +
                 "\n" +
-                "4. Liên hệ:  Ms. P 0328885251\n" +
+                "        4. Liên hệ:  Ms. P 0328885251\n" +
                 "\n" +
-                "5. Bạn vui lòng trả lời mail xác nhận khả năng tham gia phỏng vấn \n" +
+                "        5. Bạn vui lòng trả lời mail xác nhận khả năng tham gia phỏng vấn \n" +
                 "\n" +
                 "Nếu cần thay đổi về thời gian, hoặc cần thêm thông tin, bạn có thể phản hồi ngay qua email này hoặc liên hệ SĐT 0328885251 để được hỗ trợ ngay nhé.\n" +
                 "\n" +
@@ -79,7 +79,7 @@ public class MailServiceImpl implements MailService {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
             mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "nhom1codegymc0522g1@gmail.com"));
+            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
             mimeMessageHelper.setTo(mail.getMailTo());
             mimeMessageHelper.setText(mail.getMailContent());
 
