@@ -136,4 +136,23 @@ public class JobAllController {
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+    @GetMapping("/findByUserId/{id}")
+    public ResponseEntity<List<Job>> findJobByUserIdAndStatusIsTrue(@PathVariable Long id){
+        List<Job> jobs = jobService.findJobByUserIdAndStatusIsTrue(id);
+        if (jobs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+    @DeleteMapping("/reverse/{id}")
+    public ResponseEntity<Job> reverseSuggest(@PathVariable Long id) {
+        Optional<Job> jobOptional = jobService.findById(id);
+        if (!jobOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        jobOptional.get().setUser(null);
+        jobService.save(jobOptional.get());
+        return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
+    }
+
 }

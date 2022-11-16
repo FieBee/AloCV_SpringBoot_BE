@@ -38,8 +38,9 @@ public class Job extends DateAt {
     private Long recruitNumber;
     private String gender;
     private boolean status;
+    @ManyToOne
+    private User user;
     private String highlight;
-
     public Job() {
     }
 }

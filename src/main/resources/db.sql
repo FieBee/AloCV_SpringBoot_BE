@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+use alocv;
+=======
 # use casestudy6;
+>>>>>>> 8fbeb1b065f28f38f284f2eccf9dbe32c3d05c14
 # use casestudy6;
 
 
