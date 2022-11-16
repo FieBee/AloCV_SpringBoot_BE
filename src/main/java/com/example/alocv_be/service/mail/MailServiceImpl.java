@@ -11,6 +11,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service("mailService")
@@ -48,6 +50,7 @@ public class MailServiceImpl implements MailService {
 
 
     public void sendEmailApply(User user, Long jobId) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Optional<Job> job = jobService.findById(jobId);
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -55,14 +58,14 @@ public class MailServiceImpl implements MailService {
         mail.setMailFrom("ALoCV@gmail.com");
         mail.setMailTo(user.getAccount().getUserName());
         mail.setMailSubject(job.get().getCompany().getName());
-        mail.setMailContent("Thân gửi:  Bạn" + user.getAccount().getUserName() + ",\n" +
+        mail.setMailContent("Thân gửi:  Bạn " + user.getAccount().getUserName() + ",\n" +
                 "Cảm ơn bạn đã quan tâm và ứng tuyển vị trí "+ job.get().getName() +". Qua hồ sơ của bạn, Công ty nhận thấy bạn là ứng viên tiềm năng và phù hợp với vị trí này.\n" +
                 "\n" +
                 "Để bạn có thể hiểu rõ hơn về Công ty và vị trí ứng tuyển, cũng như tạo điều kiện cho Công ty đánh giá chính xác hơn về kiến thức, năng lực, kinh nghiệm làm việc và mức độ phù hợp của bạn với vị trí,"+ job.get().getCompany().getName()+" trân trọng mời bạn tham dự buổi phỏng vấn trực tiếp tại văn phòng công ty, chi tiết như sau:\n" +
                 "\n" +
                 "        1. Vị trí phỏng vấn:       "+ job.get().getName() +"\n" +
                 "\n" +
-                "        2. Thời gian phỏng vấn: 16h00 chiều thứ 5 ngày 05/05/2022\n" +
+                "        2. Thời gian phỏng vấn: 16h00 chiều ngày " + LocalDate.now().plusDays(7).format(formatter) + "\n" +
                 "\n" +
                 "        3. Địa điểm: " +job.get().getCompany().getAddress() +"\n" +
                 "\n" +
