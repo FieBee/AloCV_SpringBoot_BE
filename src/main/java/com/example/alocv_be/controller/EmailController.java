@@ -23,4 +23,9 @@ public class EmailController {
         mailService.sendEmailApply(user,jobId);
     }
 
+    @PostMapping("/share/{user1}/{user2}/{link}")
+    public void shareJob(@PathVariable String user1,@PathVariable String user2,@PathVariable String link){
+        mailService.shareJob(user1,user2,link);
+    }
+
 }

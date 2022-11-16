@@ -71,7 +71,7 @@ public class CompanyController {
     @GetMapping("/setSuggestTrue/{id}")
     public ResponseEntity<Company> setSuggestTrue(@PathVariable Long id){
         Optional<Company> newCompany = companyService.findById(id);
-        if (newCompany == null){
+        if (!newCompany.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         newCompany.get().setSuggest(true);

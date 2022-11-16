@@ -49,6 +49,7 @@ public class MailServiceImpl implements MailService {
     }
 
 
+    @Override
     public void sendEmailApply(User user, Long jobId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Optional<Job> job = jobService.findById(jobId);
@@ -59,15 +60,15 @@ public class MailServiceImpl implements MailService {
         mail.setMailTo(user.getAccount().getUserName());
         mail.setMailSubject(job.get().getCompany().getName());
         mail.setMailContent("Thân gửi:  Bạn " + user.getAccount().getUserName() + ",\n" +
-                "Cảm ơn bạn đã quan tâm và ứng tuyển vị trí "+ job.get().getName() +". Qua hồ sơ của bạn, Công ty nhận thấy bạn là ứng viên tiềm năng và phù hợp với vị trí này.\n" +
+                "Cảm ơn bạn đã quan tâm và ứng tuyển vị trí " + job.get().getName() + ". Qua hồ sơ của bạn, Công ty nhận thấy bạn là ứng viên tiềm năng và phù hợp với vị trí này.\n" +
                 "\n" +
-                "Để bạn có thể hiểu rõ hơn về Công ty và vị trí ứng tuyển, cũng như tạo điều kiện cho Công ty đánh giá chính xác hơn về kiến thức, năng lực, kinh nghiệm làm việc và mức độ phù hợp của bạn với vị trí,"+ job.get().getCompany().getName()+" trân trọng mời bạn tham dự buổi phỏng vấn trực tiếp tại văn phòng công ty, chi tiết như sau:\n" +
+                "Để bạn có thể hiểu rõ hơn về Công ty và vị trí ứng tuyển, cũng như tạo điều kiện cho Công ty đánh giá chính xác hơn về kiến thức, năng lực, kinh nghiệm làm việc và mức độ phù hợp của bạn với vị trí," + job.get().getCompany().getName() + " trân trọng mời bạn tham dự buổi phỏng vấn trực tiếp tại văn phòng công ty, chi tiết như sau:\n" +
                 "\n" +
-                "        1. Vị trí phỏng vấn:       "+ job.get().getName() +"\n" +
+                "        1. Vị trí phỏng vấn:       " + job.get().getName() + "\n" +
                 "\n" +
                 "        2. Thời gian phỏng vấn: 16h00 chiều ngày " + LocalDate.now().plusDays(7).format(formatter) + "\n" +
                 "\n" +
-                "        3. Địa điểm: " +job.get().getCompany().getAddress() +"\n" +
+                "        3. Địa điểm: " + job.get().getCompany().getAddress() + "\n" +
                 "\n" +
                 "        4. Liên hệ:  Ms. P 0328885251\n" +
                 "\n" +
@@ -78,6 +79,33 @@ public class MailServiceImpl implements MailService {
                 "Công ty rất mong sớm được gặp và trò chuyện cùng bạn\n" +
                 "\n" +
                 "Thanks & Best regards,");
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setSubject(mail.getMailSubject());
+            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
+            mimeMessageHelper.setTo(mail.getMailTo());
+            mimeMessageHelper.setText(mail.getMailContent());
+
+            mailSender.send(mimeMessageHelper.getMimeMessage());
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void shareJob(String user1, String user2, String link) {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        Mail mail = new Mail();
+        mail.setMailFrom("ALoCV@gmail.com");
+        mail.setMailTo(user2);
+        mail.setMailSubject("AloCV - Chia sẻ việc làm!");
+        mail.setMailContent("Bạn nhận được một chia sẻ việc làm từ: '" + user1 + "',\n" +
+                "Nhấn vào đây để xem chi tiết: " + link);
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
