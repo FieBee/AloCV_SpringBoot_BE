@@ -1,6 +1,9 @@
 package com.example.alocv_be.controller;
 
+import com.example.alocv_be.model.Company;
+import com.example.alocv_be.model.Job;
 import com.example.alocv_be.model.Mail;
+import com.example.alocv_be.model.User;
 import com.example.alocv_be.service.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,23 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping()
+@RequestMapping("/mail")
 public class EmailController {
     @Autowired
     private MailService mailService;
 
-//    @PostMapping ("/mail/{mailTo}/")
-//    public void home(@PathVariable String mailTo,String password){
-//        Mail mail = new Mail();
-//        mail.setMailFrom("nhom1vjppronumber1@gmail.com");
-//        mail.setMailTo(mailTo);
-//        mail.setMailSubject("Spring Boot - Email Example");
-//        mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
-//                "Mật khẩu được cấp của bạn là: "+password+".");
-//        mailService.sendEmail(mail);
-//    }
-
-    //some other cMde
-
+    @PostMapping ("/apply/{jobId}")
+    public void home(@RequestBody User user,@PathVariable Long jobId){
+        mailService.sendEmailApply(user,jobId);
+    }
 
 }

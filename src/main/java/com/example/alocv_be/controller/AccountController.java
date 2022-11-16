@@ -32,14 +32,14 @@ public class AccountController {
      * @return toàn bộ account đang có
      */
     @GetMapping
-    public ResponseEntity<Iterable<AccountResDTO>> findAllAccount(Pageable pageable){
+    public ResponseEntity<Iterable<AccountResDTO>> findAllAccount(Pageable pageable) {
         List<AccountResDTO> accountResDTOS = (List<AccountResDTO>) accountService.findAll(pageable);
-        return new ResponseEntity<>(accountResDTOS,HttpStatus.OK);
+        return new ResponseEntity<>(accountResDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Account> findById(@PathVariable Long id){
-        Optional<Account> accounts =accountService.findById(id);
+    public ResponseEntity<Account> findById(@PathVariable Long id) {
+        Optional<Account> accounts = accountService.findById(id);
         return accounts.map(account -> new ResponseEntity<>(account, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -57,56 +57,65 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         account.setId(accounts.get().getId());
-        return new ResponseEntity<>(accountService.save(account),HttpStatus.OK);
+        return new ResponseEntity<>(accountService.save(account), HttpStatus.OK);
     }
 
     @DeleteMapping("/block/{id}")
-    public ResponseEntity<Account> deleteAccount(@PathVariable Long id){
+    public ResponseEntity<Account> deleteAccount(@PathVariable Long id) {
         Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()){
+        if (!accounts.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         accounts.get().setStatus(false);
         accountService.save(accounts.get());
-        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+        return new ResponseEntity<>(accounts.get(), HttpStatus.OK);
     }
 
     @DeleteMapping("/unblock/{id}")
-    public ResponseEntity<Account> unBlockAccount(@PathVariable Long id){
+    public ResponseEntity<Account> unBlockAccount(@PathVariable Long id) {
         Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()){
+        if (!accounts.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         accounts.get().setStatus(true);
         accountService.save(accounts.get());
-        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+        return new ResponseEntity<>(accounts.get(), HttpStatus.OK);
     }
 
+
     @DeleteMapping("/setActive/{id}")
-    public ResponseEntity<Account> setAciveAccountIsTrue(@PathVariable Long id){
+    public ResponseEntity<Account> setAciveAccountIsTrue(@PathVariable Long id) {
         Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()){
+        if (!accounts.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         accounts.get().setActive(true);
         accountService.save(accounts.get());
-        return new ResponseEntity<>(accounts.get(),HttpStatus.OK);
+        return new ResponseEntity<>(accounts.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/alo123")
-    public ResponseEntity<Alo123> getAlo(){
-        return new ResponseEntity<>(accountService.getAlo123(),HttpStatus.OK);
-    }
+//    @GetMapping("/alo123")
+//    public ResponseEntity<Alo123> getAlo() {
+//        return new ResponseEntity<>(accountService.getAlo123(), HttpStatus.OK);
+//    }
 
-
+    /**
+     * Phương
+     * @return toàn bộ account vai user đang có
+     */
     @GetMapping("/getUser")
-    public ResponseEntity<Iterable<Account>> findAllAccountUser(){
+    public ResponseEntity<Iterable<Account>> findAllAccountUser() {
         List<Account> accounts = (List<Account>) accountService.findAccountUser();
-        return new ResponseEntity<>(accounts,HttpStatus.OK);
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
+
+    /**
+     * Phương
+     * @return toàn bộ account vai company đang có
+     */
     @GetMapping("/getCompany")
-    public ResponseEntity<Iterable<Account>> findAllAccountCompany(){
+    public ResponseEntity<Iterable<Account>> findAllAccountCompany() {
         List<Account> accounts = (List<Account>) accountService.findAccountCompany();
-        return new ResponseEntity<>(accounts,HttpStatus.OK);
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 }

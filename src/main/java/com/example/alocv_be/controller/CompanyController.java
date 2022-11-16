@@ -68,7 +68,7 @@ public class CompanyController {
         return new ResponseEntity<>(company.get(), HttpStatus.OK);
     }
 
-    @PostMapping("/setSuggestTrue/{id}")
+    @GetMapping("/setSuggestTrue/{id}")
     public ResponseEntity<Company> setSuggestTrue(@PathVariable Long id){
         Optional<Company> newCompany = companyService.findById(id);
         if (newCompany == null){
@@ -78,7 +78,7 @@ public class CompanyController {
         return new ResponseEntity<>(companyService.save(newCompany.get()),HttpStatus.OK);
     }
 
-    @PostMapping("/setSuggestFalse/{id}")
+    @GetMapping("/setSuggestFalse/{id}")
     public ResponseEntity<Company> setSuggestFalse(@PathVariable Long id){
         Optional<Company> newCompany = companyService.findById(id);
         if (newCompany == null){
@@ -86,5 +86,16 @@ public class CompanyController {
         }
         newCompany.get().setSuggest(false);
         return new ResponseEntity<>(companyService.save(newCompany.get()),HttpStatus.OK);
+    }
+
+
+
+    @GetMapping("/suggest")
+    public ResponseEntity<Iterable<Company>> getCompanyBySuggestIsTrue(){
+        List<Company> companies  = companyService.getCompanyBySuggestIsTrue();
+        if (companies.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(companies,HttpStatus.OK);
     }
 }
