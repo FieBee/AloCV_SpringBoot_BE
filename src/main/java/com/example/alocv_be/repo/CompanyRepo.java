@@ -2,6 +2,9 @@ package com.example.alocv_be.repo;
 
 import com.example.alocv_be.config.dto.TopJopCompanyDto;
 import com.example.alocv_be.model.Company;
+import com.example.alocv_be.model.Job;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -19,4 +22,7 @@ public interface CompanyRepo extends PagingAndSortingRepository<Company, Long> {
 
     @Query(value = "select c.id as id, c.name as name, c.image as image, sum(j.recruit_number) as recruitNumber from company c join job j on c.id = j.company_id group by c.name order by recruitNumber DESC",nativeQuery = true)
     List<TopJopCompanyDto> topJopCompany();
+
+    Page<Company> findAllByStatusIsTrue(Pageable pageable);
+
 }
