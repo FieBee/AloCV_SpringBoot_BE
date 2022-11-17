@@ -33,7 +33,8 @@ public class AccountService implements IAccountService, UserDetailsService {
         List<AccountResDTO> accountResDTO = new ArrayList<>();
         for (int i = 0; i < accounts.size(); i++) {
             String userName = accounts.get(i).getUserName();
-            accountResDTO.add(new AccountResDTO(userName));
+            Long id = accounts.get(i).getId();
+            accountResDTO.add(new AccountResDTO(id,userName));
         }
         return accountResDTO;
     }

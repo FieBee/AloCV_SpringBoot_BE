@@ -46,6 +46,10 @@ public class JobAllController {
         return new ResponseEntity<>(job.get(), HttpStatus.OK);
     }
 
+    /**
+     * Phương
+     * @return Job theo company
+     */
     @GetMapping("/company/{id}")
     public ResponseEntity<Iterable<Job>> findJobByCompanyId(@PathVariable Long id) {
         List<Job> jobs = jobService.findJobByCompanyIdAndStatusIsTrue(id);
@@ -55,6 +59,10 @@ public class JobAllController {
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
 
+    /**
+     * Phương
+     * @return Job theo location
+     */
     @GetMapping("/location/{id}")
     public ResponseEntity<Iterable<Job>> findJobByLocationId(@PathVariable Long id) {
         List<Job> jobs = jobService.findJobByLocationId(id);
@@ -127,7 +135,10 @@ public class JobAllController {
         return new ResponseEntity<>(jobList, HttpStatus.OK);
     }
 
-
+    /**
+     * Phương
+     * @return Các cv mà ứng viên đã ứng tuyển vào job
+     */
     @GetMapping("/searchByUserId/{id}")
     public ResponseEntity<List<Job>> findByUserId(@PathVariable Long id){
         List<Job> jobs = jobService.findJobByUserId(id);
@@ -136,6 +147,8 @@ public class JobAllController {
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+
+
     @GetMapping("/findByUserId/{id}")
     public ResponseEntity<List<Job>> findJobByUserIdAndStatusIsTrue(@PathVariable Long id){
         List<Job> jobs = jobService.findJobByUserIdAndStatusIsTrue(id);

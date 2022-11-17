@@ -122,4 +122,31 @@ public class MailServiceImpl implements MailService {
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    public void getOTP(String userName,String otp) {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        Mail mail = new Mail();
+        mail.setMailFrom("ALoCV@gmail.com");
+        mail.setMailTo(userName);
+        mail.setMailSubject("AloCV - Bảo mật!");
+        mail.setMailContent("Mã OTP của bạn là: " + otp);
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setSubject(mail.getMailSubject());
+            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
+            mimeMessageHelper.setTo(mail.getMailTo());
+            mimeMessageHelper.setText(mail.getMailContent());
+
+            mailSender.send(mimeMessageHelper.getMimeMessage());
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 }
