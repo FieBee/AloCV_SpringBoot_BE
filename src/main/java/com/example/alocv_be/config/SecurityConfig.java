@@ -44,11 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("**").permitAll()
-//                .and()
-//                .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").and()
-//                .authorizeRequests().antMatchers("/company/**").hasRole("COMPANY").and()
-//                .authorizeRequests().antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/login","/register/**","/").permitAll()
+                .and()
+                .authorizeRequests().antMatchers("/admin/**","/user/**","/company/**").hasRole("ADMIN").and()
+                .authorizeRequests().antMatchers("/company/**").hasRole("COMPANY").and()
+                .authorizeRequests().antMatchers("/user/**").hasRole("USER")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
         http.csrf().disable();
