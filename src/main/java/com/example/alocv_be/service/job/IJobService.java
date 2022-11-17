@@ -19,4 +19,5 @@ public interface IJobService extends IGerenalService<Job> {
 
     List<Job> findJobByUserId(Long id);
 
+    List<Job> getAllJob(Integer pageNo, Integer pageSize);
 }

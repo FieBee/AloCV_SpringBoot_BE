@@ -1,6 +1,7 @@
 package com.example.alocv_be.repo;
 
 import com.example.alocv_be.model.Job;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -35,7 +36,7 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
             , nativeQuery = true)
     List<Job> findJobByUserId(@Param("userId") Long userId);
 
-    List<Job> findAllByStatusIsTrue();
+    Page<Job> findAllByStatusIsTrue(Pageable pageable);
 
     List<Job> findJobByLocationId(Long id);
     List<Job> findJobByLocationIdAndStatusIsTrue(Long id);
@@ -48,6 +49,8 @@ public interface IJobRepo extends PagingAndSortingRepository<Job, Long> {
 //    Hiện job mới đăng gần nhất
     @Query(value = "select * from job j order by j.created_at desc WHERE j.status = true", nativeQuery = true)
      List<Job> getNewDisplayJob();
+
+//    Pageable<Job> getAllJob()
 }
 
 
