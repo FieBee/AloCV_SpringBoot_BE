@@ -13,6 +13,7 @@ public interface IJobService extends IGerenalService<Job> {
     List<Job> findAllJob();
     List<Job> findJobByLocationId(Long id);
     List<Job> findJobByCompanyIdAndStatusIsTrue(Long id);
+    List<Job> findJobByCompanyId(Long id);
     List<Job> findJobByJobFieldId(Long id);
     List <Job> findAllByIdAndStatus(Pageable pageable, Long id,boolean status);
 
@@ -22,4 +23,5 @@ public interface IJobService extends IGerenalService<Job> {
     List<Job>findJobByUserIdAndStatusIsTrue(Long id);
 
 
+    List<Job> getAllJob(Integer pageNo, Integer pageSize);
 }
