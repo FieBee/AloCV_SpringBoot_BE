@@ -172,4 +172,10 @@ public class JobAllController {
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
 
+
+    @GetMapping("/pagingjob")
+    public ResponseEntity<Iterable<Job>> pagingJob(@RequestParam("p") Integer p, @RequestParam("psize") Integer pageSize) {
+        List<Job> listJob = jobService.getAllJob(p, pageSize);
+        return new ResponseEntity<>(listJob, HttpStatus.OK);
+    }
 }
