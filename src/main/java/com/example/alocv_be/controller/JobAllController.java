@@ -59,6 +59,15 @@ public class JobAllController {
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
 
+    @GetMapping("/company/all/{id}")
+    public ResponseEntity<Iterable<Job>> findJobByCompany(@PathVariable Long id) {
+        List<Job> jobs = jobService.findJobByCompanyId(id);
+        if (jobs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
     /**
      * Phương
      * @return Job theo location
