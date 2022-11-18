@@ -37,6 +37,12 @@ public class AccountController {
         return new ResponseEntity<>(accountResDTOS, HttpStatus.OK);
     }
 
+    @GetMapping("/getAllIsTrue")
+    public ResponseEntity<Iterable<AccountResDTO>> findAllAccountByStatusIsTrueAndActiveIsTrue() {
+        List<AccountResDTO> accountResDTOS = accountService.findAllByStatusIsTrueAndActiveIsTrue();
+        return new ResponseEntity<>(accountResDTOS, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Account> findById(@PathVariable Long id) {
         Optional<Account> accounts = accountService.findById(id);
@@ -57,6 +63,8 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         account.setId(accounts.get().getId());
+        account.setActive(true);
+        account.setStatus(true);
         return new ResponseEntity<>(accountService.save(account), HttpStatus.OK);
     }
 
