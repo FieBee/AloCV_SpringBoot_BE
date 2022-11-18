@@ -45,7 +45,7 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
-//        this.mailService.sendEmail(account);
+        this.mailService.sendEmail(account);
         account.setStatus(true);
         return new ResponseEntity<>(accountService.save(account), HttpStatus.CREATED);
     }
