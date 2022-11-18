@@ -6,6 +6,7 @@ import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.IGerenalService;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IAccountService extends IGerenalService {
@@ -21,4 +22,6 @@ public interface IAccountService extends IGerenalService {
 
     Iterable<Account>findAccountUser();
     Iterable<Account>findAccountCompany();
+    List<AccountResDTO> findAllByStatusIsTrueAndActiveIsTrue();
+
 }

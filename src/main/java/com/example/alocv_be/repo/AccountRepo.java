@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface AccountRepo extends PagingAndSortingRepository<Account, Long> {
-    Account findAccountById(Long id);
 
     Account findAccountByUserName(String account);
 
@@ -30,4 +29,7 @@ public interface AccountRepo extends PagingAndSortingRepository<Account, Long> {
             "JOIN  account_app_role on account.id = account_app_role.account_id "+
             "WHERE account_app_role.app_role_id = 2 ", nativeQuery = true)
     List<Account> findAccountCompany();
+
+
+    List<Account> findAllByStatusIsTrueAndActiveIsTrue();
 }

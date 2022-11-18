@@ -10,4 +10,6 @@ public interface ICompanyService extends IGerenalService<Company> {
     Optional<Company> findCompanyByAccount_UserName(String userName);
 
     List<Company> getCompanyBySuggestIsTrue();
+
+    List<Company> getAllCompany(Integer pageNo, Integer pageSize);
 }

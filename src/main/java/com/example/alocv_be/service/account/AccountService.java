@@ -89,4 +89,17 @@ public class AccountService implements IAccountService, UserDetailsService {
     public Iterable<Account> findAccountCompany() {
         return accountRepo.findAccountCompany();
     }
+
+    @Override
+    public List<AccountResDTO> findAllByStatusIsTrueAndActiveIsTrue() {
+            List<Account> accounts = accountRepo.findAllByStatusIsTrueAndActiveIsTrue();
+            List<AccountResDTO> accountResDTO = new ArrayList<>();
+            for (int i = 0; i < accounts.size(); i++) {
+                String userName = accounts.get(i).getUserName();
+                Long id = accounts.get(i).getId();
+                accountResDTO.add(new AccountResDTO(id,userName));
+            }
+            return accountResDTO;
+    }
 }
+

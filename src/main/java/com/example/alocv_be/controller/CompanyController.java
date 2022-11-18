@@ -2,6 +2,7 @@ package com.example.alocv_be.controller;
 
 import com.example.alocv_be.model.CV;
 import com.example.alocv_be.model.Company;
+import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.company.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -97,5 +98,11 @@ public class CompanyController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(companies,HttpStatus.OK);
+    }
+
+    @GetMapping("/pagingcompany")
+    public ResponseEntity<Iterable<Company>> pagingCompany(@RequestParam("p") Integer p, @RequestParam("psize") Integer pageSize) {
+        List<Company> listJob = companyService.getAllCompany(p, pageSize);
+        return new ResponseEntity<>(listJob, HttpStatus.OK);
     }
 }

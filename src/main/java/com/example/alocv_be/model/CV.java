@@ -25,5 +25,6 @@ public class CV extends DateAt {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Job job;
+    private boolean apply;
 
 }
