@@ -3,9 +3,12 @@ package com.example.alocv_be.controller;
 import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.job.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,6 +74,7 @@ public class JobAllController {
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+
     @GetMapping("/jobField/{id}")
     public ResponseEntity<Iterable<Job>> findJobByJobFieldId(@PathVariable Long id){
         List<Job> jobs =jobService.findJobByJobFieldId(id);
