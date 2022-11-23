@@ -1,7 +1,7 @@
 package com.example.alocv_be.service.cv;
 
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.CV;
-import com.example.alocv_be.model.Job;
 import com.example.alocv_be.repo.CVRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -30,8 +30,9 @@ public class CVService implements ICVService{
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
         cvRepo.deleteById(id);
+        return null;
     }
 
     @Override

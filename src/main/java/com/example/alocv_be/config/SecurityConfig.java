@@ -44,12 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login","/register/**","/","/user/**","/company/**").permitAll()
+                .antMatchers("/login","/register/**","/","/user","/company/suggest","/company/pagingcompany","/company","/forgot-password").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").and()
-//                .authorizeRequests().antMatchers("/company/**").hasRole("COMPANY").and()
-//                .authorizeRequests().antMatchers("/user/**").hasRole("USER")
-//                .and()
+                .authorizeRequests().antMatchers("/user/**","/company/*").hasRole("ADMIN").and()
+                .authorizeRequests().antMatchers("/company/**").hasRole("COMPANY").and()
+                .authorizeRequests().antMatchers("/user/**").hasRole("USER")
+                .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
         http.csrf().disable();
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
@@ -73,28 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(accountService).passwordEncoder(NoOpPasswordEncoder.getInstance());
-    }
-    // email config
-    @Autowired
-    private Environment env;
-
-    @Bean
-    public JavaMailSender getMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-
-        mailSender.setHost(env.getProperty("spring.mail.host"));
-        mailSender.setPort(Integer.valueOf(env.getProperty("spring.mail.port")));
-        mailSender.setUsername(env.getProperty("spring.mail.username"));
-        mailSender.setPassword(env.getProperty("spring.mail.password"));
-
-        Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.smtp.starttls.enable", "true");
-        javaMailProperties.put("mail.smtp.auth", "true");
-        javaMailProperties.put("mail.transport.protocol", "smtp");
-        javaMailProperties.put("mail.debug", "true");
-
-        mailSender.setJavaMailProperties(javaMailProperties);
-        return mailSender;
     }
 
 }

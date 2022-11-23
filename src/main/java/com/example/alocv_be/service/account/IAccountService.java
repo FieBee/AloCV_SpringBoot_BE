@@ -18,10 +18,15 @@ public interface IAccountService extends IGerenalService {
 
     Account findAccountByUserName(String account);
 
+    Account edit(Long id, Account account);
+
     Alo123 getAlo123();
 
     Iterable<Account>findAccountUser();
     Iterable<Account>findAccountCompany();
     List<AccountResDTO> findAllByStatusIsTrueAndActiveIsTrue();
 
+    Account unBlockAccount(Long id);
+
+    Account setAciveAccountIsTrue(Long id);
 }

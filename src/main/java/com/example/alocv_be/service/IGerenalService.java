@@ -1,6 +1,7 @@
 package com.example.alocv_be.service;
 
 
+import com.example.alocv_be.model.Account;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
@@ -12,5 +13,5 @@ public interface IGerenalService <T>{
 
     T save(T t);
 
-    void remove(Long id);
+    Account remove(Long id);
 }

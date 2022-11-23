@@ -49,13 +49,18 @@ public class AccountService implements IAccountService, UserDetailsService {
         return null;
     }
 
+
     @Override
     public Account save(Account account) {
+        account.setStatus(true);
         return accountRepo.save(account);
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
+        Optional<Account> account = accountRepo.findById(id);
+        account.get().setStatus(false);
+        return account.get();
     }
 
     @Override
@@ -75,7 +80,16 @@ public class AccountService implements IAccountService, UserDetailsService {
             return account;
     }
 
-   @Override
+    @Override
+    public Account edit(Long id, Account account) {
+        Optional<Account> accounts = accountRepo.findById(id);
+        account.setId(accounts.get().getId());
+        account.setActive(true);
+        account.setStatus(true);
+        return account;
+    }
+
+    @Override
     public Alo123 getAlo123(){
         return this.accountRepo.getAlo123();
     }
@@ -100,6 +114,21 @@ public class AccountService implements IAccountService, UserDetailsService {
                 accountResDTO.add(new AccountResDTO(id,userName));
             }
             return accountResDTO;
+    }
+
+    @Override
+    public Account unBlockAccount(Long id) {
+        Optional<Account> accounts = accountRepo.findById(id);
+        accountRepo.save(accounts.get());
+        return accounts.get();
+    }
+
+    @Override
+    public Account setAciveAccountIsTrue(Long id) {
+        Optional<Account> accounts = accountRepo.findById(id);
+        accounts.get().setActive(true);
+        accountRepo.save(accounts.get());
+        return accounts.get();
     }
 }
 

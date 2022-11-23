@@ -28,19 +28,23 @@ public class AccountController {
 
     /**
      * Phương
+     *
      * @param pageable phân trang
-     * @return toàn bộ account đang có
+     * @return Toàn bộ account đang có
      */
     @GetMapping
     public ResponseEntity<Iterable<AccountResDTO>> findAllAccount(Pageable pageable) {
-        List<AccountResDTO> accountResDTOS = (List<AccountResDTO>) accountService.findAll(pageable);
-        return new ResponseEntity<>(accountResDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(accountService.findAll(pageable), HttpStatus.OK);
     }
 
+    /**
+     * Phương
+     *
+     * @return Toàn bộ account đang được phép hoạt động
+     */
     @GetMapping("/getAllIsTrue")
     public ResponseEntity<Iterable<AccountResDTO>> findAllAccountByStatusIsTrueAndActiveIsTrue() {
-        List<AccountResDTO> accountResDTOS = accountService.findAllByStatusIsTrueAndActiveIsTrue();
-        return new ResponseEntity<>(accountResDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(accountService.findAllByStatusIsTrueAndActiveIsTrue(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -51,79 +55,59 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
-//        this.mailService.sendEmail(account);
-        account.setStatus(true);
+        this.mailService.sendEmail(account);
         return new ResponseEntity<>(accountService.save(account), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Account> updateAccount(@PathVariable Long id, @RequestBody Account account) {
-        Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        account.setId(accounts.get().getId());
-        account.setActive(true);
-        account.setStatus(true);
-        return new ResponseEntity<>(accountService.save(account), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.save(accountService.edit(id, account)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/block/{id}")
-    public ResponseEntity<Account> deleteAccount(@PathVariable Long id) {
-        Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        accounts.get().setStatus(false);
-        accountService.save(accounts.get());
-        return new ResponseEntity<>(accounts.get(), HttpStatus.OK);
+    @GetMapping("/block/{id}")
+    public ResponseEntity<Account> blockAccount(@PathVariable Long id) {
+        return new ResponseEntity<>(accountService.remove(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/unblock/{id}")
+    @GetMapping("/unblock/{id}")
     public ResponseEntity<Account> unBlockAccount(@PathVariable Long id) {
-        Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        accounts.get().setStatus(true);
-        accountService.save(accounts.get());
-        return new ResponseEntity<>(accounts.get(), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.unBlockAccount(id), HttpStatus.OK);
     }
-
-
-    @DeleteMapping("/setActive/{id}")
-    public ResponseEntity<Account> setAciveAccountIsTrue(@PathVariable Long id) {
-        Optional<Account> accounts = accountService.findById(id);
-        if (!accounts.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        accounts.get().setActive(true);
-        accountService.save(accounts.get());
-        return new ResponseEntity<>(accounts.get(), HttpStatus.OK);
-    }
-
-//    @GetMapping("/alo123")
-//    public ResponseEntity<Alo123> getAlo() {
-//        return new ResponseEntity<>(accountService.getAlo123(), HttpStatus.OK);
-//    }
 
     /**
      * Phương
-     * @return toàn bộ account vai user đang có
+     *
+     * @return Tài khoản đã phê duyệt sau đăng ký
+     */
+    @GetMapping("/setActive/{id}")
+    public ResponseEntity<Account> setAciveAccountIsTrue(@PathVariable Long id) {
+        return new ResponseEntity<>(accountService.setAciveAccountIsTrue(id), HttpStatus.OK);
+    }
+
+
+
+    /**
+     * Phương
+     *
+     * @return Toàn bộ account user đang có
      */
     @GetMapping("/getUser")
     public ResponseEntity<Iterable<Account>> findAllAccountUser() {
-        List<Account> accounts = (List<Account>) accountService.findAccountUser();
-        return new ResponseEntity<>(accounts, HttpStatus.OK);
+        return new ResponseEntity<>(accountService.findAccountUser(), HttpStatus.OK);
     }
 
     /**
      * Phương
-     * @return toàn bộ account vai company đang có
+     *
+     * @return Toàn bộ account company đang có
      */
     @GetMapping("/getCompany")
     public ResponseEntity<Iterable<Account>> findAllAccountCompany() {
-        List<Account> accounts = (List<Account>) accountService.findAccountCompany();
-        return new ResponseEntity<>(accounts, HttpStatus.OK);
+        return new ResponseEntity<>(accountService.findAccountCompany(), HttpStatus.OK);
     }
+
+    //    @GetMapping("/alo123")
+//    public ResponseEntity<Alo123> getAlo() {
+//        return new ResponseEntity<>(accountService.getAlo123(), HttpStatus.OK);
+//    }
 }

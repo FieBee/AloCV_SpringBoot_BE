@@ -1,5 +1,6 @@
 package com.example.alocv_be.service.job;
 
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.Job;
 import com.example.alocv_be.repo.IJobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,9 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
     jobRepo.deleteById(id);
+        return null;
     }
 
 

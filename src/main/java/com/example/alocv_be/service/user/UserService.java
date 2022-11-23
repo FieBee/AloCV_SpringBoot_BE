@@ -1,5 +1,6 @@
 package com.example.alocv_be.service.user;
 
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.User;
 import com.example.alocv_be.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,8 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
+        return null;
     }
 
     @Override

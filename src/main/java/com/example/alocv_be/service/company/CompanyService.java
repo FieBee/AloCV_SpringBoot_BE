@@ -1,7 +1,7 @@
 package com.example.alocv_be.service.company;
 
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.Company;
-import com.example.alocv_be.model.Job;
 import com.example.alocv_be.repo.CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -34,8 +33,9 @@ public class CompanyService implements ICompanyService{
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
         companyRepo.deleteById(id);
+        return null;
     }
 
     @Override

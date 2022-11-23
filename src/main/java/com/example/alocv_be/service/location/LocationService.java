@@ -1,5 +1,6 @@
 package com.example.alocv_be.service.location;
 
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.Location;
 import com.example.alocv_be.repo.LocationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class LocationService implements ILocationService{
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
         locationRepo.deleteById(id);
+        return null;
     }
 }

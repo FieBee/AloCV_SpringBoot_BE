@@ -1,5 +1,6 @@
 package com.example.alocv_be.service.notification;
 
+import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.Notification;
 import com.example.alocv_be.repo.NotificationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class NotificationService implements INotificationService{
     }
 
     @Override
-    public void remove(Long id) {
+    public Account remove(Long id) {
         notificationRepo.deleteById(id);
+        return null;
     }
 }
