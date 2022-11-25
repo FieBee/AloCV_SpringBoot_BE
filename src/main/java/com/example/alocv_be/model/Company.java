@@ -32,4 +32,8 @@ public class Company extends DateAt{
     private boolean suggest;
 
 
+    public Company(long l, String company) {
+        this.id = l;
+        this.name = company;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.alocv_be.service;
+package com.example.alocv_be.service.company;
 
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.model.Company;

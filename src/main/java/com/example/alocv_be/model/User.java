@@ -27,4 +27,8 @@ public class User extends DateAt{
     private boolean isAdmin;
 
 
+    public User(long l, String user) {
+        this.id = l;
+        this.name = user;
+    }
 }

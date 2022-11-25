@@ -19,6 +19,10 @@ public class JobService implements IJobService {
     @Autowired
     private IJobRepo jobRepo;
 
+    public JobService(IJobRepo jobRepo) {
+        this.jobRepo = jobRepo;
+    }
+
     @Override
     public Iterable<Job> findAll(Pageable pageable) {
         return jobRepo.findAllByStatusIsTrue(pageable);
