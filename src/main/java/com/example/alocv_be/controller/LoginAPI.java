@@ -55,8 +55,10 @@ public class LoginAPI {
                     .build();
             return new ResponseEntity<>(accountToken,HttpStatus.OK);
         } catch (Exception e) {
-            return null;
+            System.err.println("sai roi`");
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }
+
     }
 
     @PostMapping("/register")

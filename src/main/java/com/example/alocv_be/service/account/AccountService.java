@@ -27,6 +27,10 @@ public class AccountService implements IAccountService, UserDetailsService {
     @Autowired
     UserRepo userRepo;
 
+    public AccountService(AccountRepo accountRepo) {
+        this.accountRepo = accountRepo;
+    }
+
     @Override
     public Iterable<AccountResDTO> findAll(Pageable pageable) {
         List<Account> accounts = (List<Account>) accountRepo.findAll();
@@ -37,6 +41,11 @@ public class AccountService implements IAccountService, UserDetailsService {
             accountResDTO.add(new AccountResDTO(id,userName));
         }
         return accountResDTO;
+    }
+
+    @Override
+    public Iterable<Account> findAll() {
+        return accountRepo.findAll();
     }
 
     @Override
@@ -66,7 +75,7 @@ public class AccountService implements IAccountService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = accountRepo.findAccountByUserName(username);
-        return new User(account.getUserName(),account.getPassword(),  account.getAppRole());
+        return new User(account.getUserName(),account.getPassword(),account.getAppRole());
     }
 
     @Override
@@ -77,7 +86,7 @@ public class AccountService implements IAccountService, UserDetailsService {
     @Override
     public Account findAccountByUserName(String username) {
         Account account = accountRepo.findAccountByUserName(username);
-            return account;
+        return account;
     }
 
     @Override

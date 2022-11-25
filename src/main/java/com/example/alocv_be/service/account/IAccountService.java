@@ -16,6 +16,8 @@ public interface IAccountService extends IGerenalService {
 
     Iterable<AccountResDTO> findAll(Pageable pageable);
 
+    Iterable<Account> findAll();
+
     Account findAccountByUserName(String account);
 
     Account edit(Long id, Account account);
