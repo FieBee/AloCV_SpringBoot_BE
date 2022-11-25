@@ -17,6 +17,10 @@ public class CompanyService implements ICompanyService{
     @Autowired
     CompanyRepo companyRepo;
 
+    public CompanyService(CompanyRepo companyRepo) {
+        this.companyRepo = companyRepo;
+    }
+
     @Override
     public Iterable<Company> findAll(Pageable pageable) {
         return companyRepo.findAll();

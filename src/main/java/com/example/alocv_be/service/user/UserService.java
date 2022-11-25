@@ -16,6 +16,10 @@ public class UserService implements IUserService{
     @Autowired
     UserRepo userRepo;
 
+    public UserService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
     @Override
     public Iterable<User> findAll(Pageable pageable) {
         return userRepo.findAll();
