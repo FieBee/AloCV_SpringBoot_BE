@@ -2,7 +2,6 @@ package com.example.alocv_be.controller;
 
 
 import com.example.alocv_be.dto.AccountResDTO;
-import com.example.alocv_be.dto.Alo123;
 import com.example.alocv_be.model.Account;
 import com.example.alocv_be.service.account.IAccountService;
 import com.example.alocv_be.service.mail.MailService;
@@ -12,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

@@ -3,12 +3,9 @@ package com.example.alocv_be.controller;
 import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.job.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,6 +48,7 @@ public class JobAllController {
 
     /**
      * Phương
+     *
      * @return Job theo company
      */
     @GetMapping("/company/{id}")
@@ -73,6 +71,7 @@ public class JobAllController {
 
     /**
      * Phương
+     *
      * @return Job theo location
      */
     @GetMapping("/location/{id}")
@@ -85,19 +84,19 @@ public class JobAllController {
     }
 
     @GetMapping("/jobField/{id}")
-    public ResponseEntity<Iterable<Job>> findJobByJobFieldId(@PathVariable Long id){
-        List<Job> jobs =jobService.findJobByJobFieldId(id);
+    public ResponseEntity<Iterable<Job>> findJobByJobFieldId(@PathVariable Long id) {
+        List<Job> jobs = jobService.findJobByJobFieldId(id);
         if (jobs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(jobs,HttpStatus.OK);
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
 
-        }
+    }
 
     @PostMapping
     public ResponseEntity<Job> saveJob(@RequestBody Job job) {
         job.setStatus(true);
-            return new ResponseEntity<>(jobService.save(job), HttpStatus.CREATED);
+        return new ResponseEntity<>(jobService.save(job), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -133,14 +132,14 @@ public class JobAllController {
         return new ResponseEntity<>(jobOptional.get(), HttpStatus.NO_CONTENT);
     }
 
- @GetMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<List<Job>> findBy2(@RequestParam(value = "name", required = false) String name,
-                                             @RequestParam(value = "salaryRange_min",required = false, defaultValue = "0") Long salaryRange_min,
-                                             @RequestParam(value = "salaryRange_max",required = false, defaultValue = "1000000000") Long salaryRange_max,
-                                             @RequestParam(value = "jobField",required = false) String jobField,
-                                             @RequestParam(value = "location",required = false) String location,
-                                             @RequestParam(value = "company",required = false) String company) {
-        List<Job> jobList = jobService.findJobBy(name, salaryRange_min,salaryRange_max,jobField, location, company );
+                                             @RequestParam(value = "salaryRange_min", required = false, defaultValue = "0") Long salaryRange_min,
+                                             @RequestParam(value = "salaryRange_max", required = false, defaultValue = "1000000000") Long salaryRange_max,
+                                             @RequestParam(value = "jobField", required = false) String jobField,
+                                             @RequestParam(value = "location", required = false) String location,
+                                             @RequestParam(value = "company", required = false) String company) {
+        List<Job> jobList = jobService.findJobBy(name, salaryRange_min, salaryRange_max, jobField, location, company);
         if (jobList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -150,10 +149,11 @@ public class JobAllController {
 
     /**
      * Phương
+     *
      * @return Các cv mà ứng viên đã ứng tuyển vào job
      */
     @GetMapping("/searchByUserId/{id}")
-    public ResponseEntity<List<Job>> findByUserId(@PathVariable Long id){
+    public ResponseEntity<List<Job>> findByUserId(@PathVariable Long id) {
         List<Job> jobs = jobService.findJobByUserId(id);
         if (jobs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -163,13 +163,14 @@ public class JobAllController {
 
 
     @GetMapping("/findByUserId/{id}")
-    public ResponseEntity<List<Job>> findJobByUserIdAndStatusIsTrue(@PathVariable Long id){
+    public ResponseEntity<List<Job>> findJobByUserIdAndStatusIsTrue(@PathVariable Long id) {
         List<Job> jobs = jobService.findJobByUserIdAndStatusIsTrue(id);
         if (jobs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
+
     @DeleteMapping("/reverse/{id}")
     public ResponseEntity<Job> reverseSuggest(@PathVariable Long id) {
         Optional<Job> jobOptional = jobService.findById(id);

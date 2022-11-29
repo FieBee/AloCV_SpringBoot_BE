@@ -38,7 +38,7 @@ public class JobServiceTest {
         List<Job> jobs = Arrays.asList(job);
         doReturn(Optional.of(job)).when(jobRepo).findById(1L);
         doReturn(jobs).when(jobRepo).findJobByCompanyId(1L);
-        doReturn(jobs).when(jobRepo).findJobByJobFieldId(1L);
+        doReturn(jobs).when(jobRepo).findJobByJobFieldIdAndStatusIsTrue(1L);
         doReturn(jobs).when(jobRepo).findJobByUserId(1L);
         doReturn(jobs).when(jobRepo).findJobBy("job1",1L,1000L,"IT","Ha Noi","company");
 
@@ -92,7 +92,7 @@ public class JobServiceTest {
     }
 
     @Test
-    @DisplayName("find by job field Id return list job")
+    @DisplayName("find by job field id return list job")
     void findJobByJobFieldId() {
         List<Job> jobList =  jobService.findJobByJobFieldId(1L);
         assertThat(jobList).isNotEmpty();

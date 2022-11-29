@@ -3,8 +3,8 @@ package com.example.alocv_be.controller;
 
 
 import com.example.alocv_be.dto.AccountToken;
-import com.example.alocv_be.model.AppRole;
 import com.example.alocv_be.model.Account;
+import com.example.alocv_be.model.AppRole;
 import com.example.alocv_be.service.JwtService;
 import com.example.alocv_be.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class LoginAPI {
     AccountService accountService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Account account){
+    public ResponseEntity<?> login(@RequestBody Account account) {
         try {
             // Tạo ra 1 đối tượng Authentication.
             Authentication authentication = authenticationManager.authenticate(
@@ -48,21 +48,21 @@ public class LoginAPI {
 
             AccountToken accountToken = AccountToken.builder().userName(account1.getUserName())
                     .password(account1.getPassword())
-                    .appRole( account1.getAppRole())
+                    .appRole(account1.getAppRole())
                     .token(token)
                     .status(account1.getStatus())
                     .active(account1.getActive())
                     .build();
-            return new ResponseEntity<>(accountToken,HttpStatus.OK);
+            return new ResponseEntity<>(accountToken, HttpStatus.OK);
         } catch (Exception e) {
             System.err.println("sai roi`");
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Account> register(@RequestBody Account appUser){
+    public ResponseEntity<Account> register(@RequestBody Account appUser) {
         Set<AppRole> roles = new HashSet<>();
         AppRole role = new AppRole();
         role.setId(2L);

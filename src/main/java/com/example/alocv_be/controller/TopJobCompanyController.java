@@ -20,15 +20,16 @@ public class TopJobCompanyController {
 
     @Autowired
     IJobRepo jobRepo;
-//    phương thức hiện các công ty có lượng tuyển dụng cao nhất trở xuống
+
+    //    phương thức hiện các công ty có lượng tuyển dụng cao nhất trở xuống
     @GetMapping
-    public ResponseEntity <List<TopJopCompanyDto>> topJopCompanyDtoList (){
+    public ResponseEntity<List<TopJopCompanyDto>> topJopCompanyDtoList() {
         return ResponseEntity.ok(companyRepo.topJopCompany());
     }
 
-//    Phương thức in ra các job được đăng gần nhất
-   @GetMapping("/job")
-    public ResponseEntity<List<Job>> newDisplayJob () {
+    //    Phương thức in ra các job được đăng gần nhất
+    @GetMapping("/job")
+    public ResponseEntity<List<Job>> newDisplayJob() {
         return ResponseEntity.ok(jobRepo.getNewDisplayJob());
-   }
+    }
 }

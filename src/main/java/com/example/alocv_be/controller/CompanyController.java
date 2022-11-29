@@ -1,8 +1,6 @@
 package com.example.alocv_be.controller;
 
-import com.example.alocv_be.model.CV;
 import com.example.alocv_be.model.Company;
-import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.company.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,17 +20,12 @@ public class CompanyController {
 
     @GetMapping
     public ResponseEntity<Iterable<Company>> findAllCompany(Pageable pageable){
-        List<Company> companies  = (List<Company>)companyService.findAll(pageable);
-        if (companies.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(companies,HttpStatus.OK);
+        return new ResponseEntity<>(companyService.findAll(pageable),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Company> findById(@PathVariable Long id){
-        Optional<Company> companyOptional =companyService.findById(id);
-        return companyOptional.map(account -> new ResponseEntity<>(account, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return companyService.findById(id).map(account -> new ResponseEntity<>(account, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
@@ -52,21 +45,13 @@ public class CompanyController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Company> deleteCompany(@PathVariable Long id){
-        Optional<Company> companyOptional = companyService.findById(id);
-        if (!companyOptional.isPresent()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         companyService.remove(id);
-        return new ResponseEntity<>(companyOptional.get(),HttpStatus.OK);
+        return new ResponseEntity<>(companyService.findById(id).get(),HttpStatus.OK);
     }
 
     @GetMapping("/getCompany/{userName}")
     public ResponseEntity<Company> findByAccount(@PathVariable String userName) {
-        Optional<Company> company = companyService.findCompanyByAccount_UserName(userName);
-        if (!company.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(company.get(), HttpStatus.OK);
+        return new ResponseEntity<>(companyService.findCompanyByAccount_UserName(userName).get(), HttpStatus.OK);
     }
 
     @GetMapping("/setSuggestTrue/{id}")

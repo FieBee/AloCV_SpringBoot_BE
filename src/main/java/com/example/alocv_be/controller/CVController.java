@@ -1,7 +1,6 @@
 package com.example.alocv_be.controller;
 
 import com.example.alocv_be.model.CV;
-import com.example.alocv_be.model.Job;
 import com.example.alocv_be.service.cv.ICVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +35,7 @@ public class CVController {
         }
         return new ResponseEntity<>(cvOptional.get(), HttpStatus.OK);
     }
+
     @GetMapping("/status/{id}")
     public ResponseEntity<Iterable<CV>> findCVByUserIdAndStatusIsTrue(@PathVariable Long id) {
         List<CV> cvs = cvService.findCVByUserIdAndStatusIsTrue(id);
@@ -44,6 +44,7 @@ public class CVController {
         }
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
+
     @GetMapping("/statusTrue/{id}")
     public ResponseEntity<Iterable<CV>> getCVByUserIdAndStatusIsTrue(@PathVariable Long id) {
         List<CV> cvs = cvService.findCVByUserIdAndStatusIsTrue(id);
@@ -52,6 +53,7 @@ public class CVController {
         }
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
+
     @PostMapping
     public ResponseEntity<CV> saveCV(@RequestBody CV cv) {
         cv.setStatus(true);
@@ -95,6 +97,7 @@ public class CVController {
         }
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
+
     @DeleteMapping("/status/{id}")
     public ResponseEntity<CV> deleteCVByStatus(@PathVariable Long id) {
         Optional<CV> cvOptional = cvService.findById(id);

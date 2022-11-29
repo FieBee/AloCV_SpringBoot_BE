@@ -1,6 +1,5 @@
 package com.example.alocv_be.model;
 
-import com.example.alocv_be.model.AppRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

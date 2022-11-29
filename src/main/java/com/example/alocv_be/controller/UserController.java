@@ -36,31 +36,31 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
-        Optional<User> users =userService.findById(id);
-        if (!users.isPresent()){
-            return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<User> findById(@PathVariable Long id) {
+        Optional<User> users = userService.findById(id);
+        if (!users.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(users.get(),HttpStatus.OK);
+        return new ResponseEntity<>(users.get(), HttpStatus.OK);
     }
 
 
     @PostMapping
-    public ResponseEntity<User> save(@Valid @RequestBody User customer){
+    public ResponseEntity<User> save(@Valid @RequestBody User customer) {
         return new ResponseEntity<>(userService.save(customer), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@Valid @PathVariable Long id,@RequestBody User customer){
+    public ResponseEntity<User> updateUser(@Valid @PathVariable Long id, @RequestBody User customer) {
         Optional<User> users = userService.findById(id);
         if (!users.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         customer.setId(users.get().getId());
-        return new ResponseEntity<>(userService.save(customer),HttpStatus.OK);
+        return new ResponseEntity<>(userService.save(customer), HttpStatus.OK);
     }
 
-//    @DeleteMapping("/{id}")
+    //    @DeleteMapping("/{id}")
 //    public ResponseEntity<User> deleteUser(@PathVariable Long id){
 //        Optional<User> users = userService.findById(id);
 //        if (!users.isPresent()){
