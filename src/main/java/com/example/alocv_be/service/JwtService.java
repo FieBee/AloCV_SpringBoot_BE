@@ -17,6 +17,7 @@ public class JwtService {
     private static final long EXPIRE_TIME = 86400000000L;
 
 
+
     public String createToken(Authentication authentication) {
         // lấy đối tượng đang đăng nhập.
         User user = (User) authentication.getPrincipal();

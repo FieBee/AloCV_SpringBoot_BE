@@ -31,21 +31,7 @@ public class MailServiceImpl implements MailService {
         mail.setMailSubject("AloCV - Tạo tài khoản");
         mail.setMailContent("Tạo tài khoản AloCV thành công, giờ đây bạn có thể đăng nhập!!! " +
                 "Mật khẩu được cấp của bạn là: " + account.getPassword() + ".");
-        try {
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-
-            mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
-            mimeMessageHelper.setTo(mail.getMailTo());
-            mimeMessageHelper.setText(mail.getMailContent());
-
-            mailSender.send(mimeMessageHelper.getMimeMessage());
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        mailSender(mail, mimeMessage);
     }
 
 
@@ -79,21 +65,7 @@ public class MailServiceImpl implements MailService {
                 "Công ty rất mong sớm được gặp và trò chuyện cùng bạn\n" +
                 "\n" +
                 "Thanks & Best regards,");
-        try {
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-
-            mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
-            mimeMessageHelper.setTo(mail.getMailTo());
-            mimeMessageHelper.setText(mail.getMailContent());
-
-            mailSender.send(mimeMessageHelper.getMimeMessage());
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        mailSender(mail, mimeMessage);
     }
 
     @Override
@@ -106,26 +78,12 @@ public class MailServiceImpl implements MailService {
         mail.setMailSubject("AloCV - Chia sẻ việc làm!");
         mail.setMailContent("Bạn nhận được một chia sẻ việc làm từ: '" + user1 + "',\n" +
                 "Nhấn vào đây để xem chi tiết: http://localhost:4200/job/job-detail/" + jobId);
-        try {
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-
-            mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "AloCV@gmail.com"));
-            mimeMessageHelper.setTo(mail.getMailTo());
-            mimeMessageHelper.setText(mail.getMailContent());
-
-            mailSender.send(mimeMessageHelper.getMimeMessage());
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        mailSender(mail, mimeMessage);
     }
 
 
     @Override
-    public void getOTP(String userName,String otp) {
+    public void getOTP(String userName, String otp) {
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         Mail mail = new Mail();
@@ -133,6 +91,11 @@ public class MailServiceImpl implements MailService {
         mail.setMailTo(userName);
         mail.setMailSubject("AloCV - Bảo mật!");
         mail.setMailContent("Mã OTP của bạn là: " + otp);
+        mailSender(mail, mimeMessage);
+    }
+
+
+    public void mailSender(Mail mail, MimeMessage mimeMessage) {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
@@ -143,10 +106,9 @@ public class MailServiceImpl implements MailService {
 
             mailSender.send(mimeMessageHelper.getMimeMessage());
 
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (MessagingException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
+
 }

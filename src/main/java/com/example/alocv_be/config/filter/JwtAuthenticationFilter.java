@@ -33,14 +33,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String username = jwtService.getAccountFromJwtToken(token);
                 // lấy ra UserDetails thông qua username
                 UserDetails userDetails1 = accountService.loadUserByUsername(username);
-                // thực hiện việc xắc thực thông qua token.
+                // thực hiện việc xác thực thông qua token.
                 UsernamePasswordAuthenticationToken authentication1 = new UsernamePasswordAuthenticationToken(
                         userDetails1, null, userDetails1.getAuthorities());
                 authentication1.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication1);
-
-            } else {
-
             }
         } catch (Exception e) {
             logger.error("Can NOT set user authentication -> Message: {}", e);
